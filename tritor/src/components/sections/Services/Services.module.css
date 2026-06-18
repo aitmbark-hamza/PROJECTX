@@ -1,0 +1,227 @@
+.services {
+  position: relative;
+  background: var(--color-void, #0a0a0a);
+  padding: 180px 0;
+  overflow: hidden;
+}
+
+/* Video Background System */
+.videoWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.bgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* This dark mask keeps typography ultra-readable and expensive looking */
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--color-void, #0a0a0a) 0%,
+    rgba(10, 10, 10, 0.85) 25%,
+    rgba(10, 10, 10, 0.85) 75%,
+    var(--color-void, #0a0a0a) 100%
+  );
+}
+
+/* Keeps text and cards floating beautifully above the video */
+.contentWrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header p {
+  text-align: center;
+  max-width: 600px;
+}
+
+/* Grid Layout styling */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+/* Centers the 4th and 5th items seamlessly on desktop */
+.grid > :nth-child(4) {
+  grid-column: 1 / 2;
+  justify-self: end;
+  transform: translateX(50%); /* Shifts subtly inwards for an asymmetrical luxury balance */
+}
+
+.grid > :nth-child(5) {
+  grid-column: 3 / 4;
+  justify-self: start;
+  transform: translateX(-50%);
+}
+
+/* Premium Card Design with Glassmorphism */
+.card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(201, 168, 76, 0.12);
+  backdrop-filter: blur(12px); /* Let the blurred background video peak through subtly */
+  -webkit-backdrop-filter: blur(12px);
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 360px;
+  width: 100%;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  border-color: rgba(201, 168, 76, 0.4);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4), 0 0 40px rgba(201, 168, 76, 0.05);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cardIcon {
+  color: var(--color-gold);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover .cardIcon {
+  transform: scale(1.05);
+}
+
+.cardCategory {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-gold-dim, #c9a84c);
+  opacity: 0.8;
+}
+
+.cardTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
+  color: var(--color-white, #fff);
+}
+
+.cardDesc {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 26px;
+  color: rgba(255, 255, 255, 0.7);
+  flex: 1;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: gap 0.3s ease, opacity 0.3s ease;
+  margin-top: 12px;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.cardLink:hover {
+  gap: 14px;
+  border-color: var(--color-gold);
+}
+
+/* Responsiveness adjustments */
+@media (max-width: 1024px) {
+  .services {
+    padding: 120px 0;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .grid > :nth-child(4),
+  .grid > :nth-child(5) {
+    grid-column: auto;
+    justify-self: auto;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .services {
+    padding: 90px 0;
+  }
+
+  .header {
+    margin-bottom: 56px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    max-width: 100%;
+    padding: 24px 16px;
+    gap: 10px;
+  }
+
+  .cardTitle {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .cardDesc {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .cardIcon svg {
+    width: 28px;
+    height: 28px;
+  }
+}

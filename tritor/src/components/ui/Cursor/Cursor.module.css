@@ -1,0 +1,35 @@
+.dot {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: difference;
+  transition: width 0.3s, height 0.3s, background 0.3s;
+}
+
+.ring {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+}
+
+.dotHover {
+  width: 8px;
+  height: 8px;
+  background: var(--color-gold-light);
+}
+
+.ringHover {
+  width: 56px;
+  height: 56px;
+  border-color: var(--color-gold);
+  background: rgba(201, 168, 76, 0.05);
+}
