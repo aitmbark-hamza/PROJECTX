@@ -26,17 +26,15 @@
 }
 
 .logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 700;
-  font-size: 28px;
-  color: var(--color-gold);
-  letter-spacing: 0.3em;
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-.logo:hover {
-  color: var(--color-gold-light);
+.logoImg {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 
 .links {
@@ -83,6 +81,44 @@
 
 .link.active::after {
   width: 100%;
+}
+
+.bookingBtn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: var(--color-gold);
+  color: var(--color-black);
+  border: none;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.bookingBtn:hover {
+  background: var(--color-gold-light);
+}
+
+.mobileBookingBtn {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.2;
+  color: var(--color-gold);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.mobileBookingBtn:hover {
+  transform: translateX(8px);
 }
 
 .hamburger {
@@ -191,7 +227,8 @@
     padding: 100px 32px 32px;
   }
 
-  .mobileLink {
+  .mobileLink,
+  .mobileBookingBtn {
     font-size: 32px;
   }
 }

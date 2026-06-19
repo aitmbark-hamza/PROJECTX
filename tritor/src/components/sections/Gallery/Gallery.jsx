@@ -2,19 +2,20 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
+import { slideFromLeft } from '../../../animations/variants';
 import styles from './Gallery.module.css';
 
-const categories = ['Tout', 'Mariages', 'Cocktails', 'Corporate'];
+const categories = ['Tout', 'Buffets', 'Cocktails', 'Événements'];
 
 const galleryItems = [
-  { id: 1, src: '/images/gallery-1.jpg', category: 'Mariages', title: 'Mariage au Palais', aspect: '3/4' },
-  { id: 2, src: '/images/gallery-2.jpg', category: 'Cocktails', title: 'Cocktail Soirée', aspect: '1/1' },
-  { id: 3, src: '/images/gallery-3.jpg', category: 'Corporate', title: "Gala d'Entreprise", aspect: '4/3' },
-  { id: 4, src: '/images/gallery-4.jpg', category: 'Mariages', title: 'Réception en Blanc', aspect: '3/4' },
-  { id: 5, src: '/images/gallery-5.jpg', category: 'Cocktails', title: 'Dîner aux Chandelles', aspect: '1/1' },
-  { id: 6, src: '/images/gallery-6.jpg', category: 'Corporate', title: 'Conférence Premium', aspect: '4/3' },
-  { id: 7, src: '/images/gallery-7.jpg', category: 'Mariages', title: 'Jardin Enchanté', aspect: '3/4' },
-  { id: 8, src: '/images/gallery-8.jpg', category: 'Cocktails', title: 'Bar Éphémère', aspect: '1/1' },
+  { id: 1, src: '/images/gallery-1.jpg', category: 'Buffets', title: 'Buffet de Réception', aspect: '3/4' },
+  { id: 2, src: '/images/gallery-2.jpg', category: 'Cocktails', title: 'Cocktail DINatoire', aspect: '1/1' },
+  { id: 3, src: '/images/gallery-3.jpg', category: 'Événements', title: "Gala d'Entreprise", aspect: '4/3' },
+  { id: 4, src: '/images/gallery-4.jpg', category: 'Buffets', title: 'Buffet de Luxe', aspect: '3/4' },
+  { id: 5, src: '/images/gallery-5.jpg', category: 'Cocktails', title: 'Soirée Cocktail', aspect: '1/1' },
+  { id: 6, src: '/images/gallery-6.jpg', category: 'Événements', title: "Séminaire d'Entreprise", aspect: '4/3' },
+  { id: 7, src: '/images/gallery-7.jpg', category: 'Buffets', title: 'Buffet de Mariage', aspect: '3/4' },
+  { id: 8, src: '/images/gallery-8.jpg', category: 'Cocktails', title: 'Bar à Cocktails', aspect: '1/1' },
 ];
 
 export default function Gallery() {
@@ -63,11 +64,20 @@ export default function Gallery() {
 
   return (
     <section className={styles.gallery} id="gallery">
-      <div className={`${styles.container} section-container`}>
+      <motion.div
+        className={`${styles.container} section-container`}
+        variants={slideFromLeft}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <ScrollReveal direction="up">
           <div className={styles.header}>
             <span className="section-eyebrow">Notre Portfolio</span>
-            <h2 className="section-title">Galerie d'Inspiration</h2>
+            <h2 className="section-title">Nos Réalisations</h2>
+            <p className={styles.description}>
+              Découvrez en images quelques-unes de nos créations et événements réalisés avec passion et savoir-faire.
+            </p>
           </div>
         </ScrollReveal>
 
@@ -117,7 +127,7 @@ export default function Gallery() {
             ))}
           </AnimatePresence>
         </motion.div>
-      </div>
+      </motion.div>
 
       <AnimatePresence>
         {lightboxIndex !== null && (

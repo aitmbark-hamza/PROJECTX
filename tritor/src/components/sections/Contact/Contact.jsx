@@ -1,8 +1,30 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, MessageCircle, Check, Loader2 } from 'lucide-react';
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  MessageCircle,
+  Check,
+  Loader2,
+  User,
+  Tag,
+  MessageSquare,
+  Send,
+  Navigation,
+} from 'lucide-react';
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
+import { slideFromLeft } from '../../../animations/variants';
 import styles from './Contact.module.css';
+
+const HEADLINE_WORDS = [
+  { text: 'TRAITEUR', variant: 'outline' },
+  { text: 'EXCELLENCE', variant: 'fill' },
+  { text: 'QUALITÉ', variant: 'outline' },
+];
+
+const MAP_QUERY = '36+Boulevard+du+Nil,+Casablanca+20250,+Maroc';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
@@ -28,89 +50,134 @@ export default function Contact() {
 
   return (
     <section className={styles.contact} id="contact">
-      <div className={`${styles.container} section-container`}>
+      {/* Cropped gold/black headline, echoes the reference's big stacked type */}
+      <div className={styles.headlineSection}>
+        <div className={styles.decorDots} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className={styles.headlineWrap}>
+          {HEADLINE_WORDS.map((word, i) => (
+            <motion.span
+              key={word.text}
+              className={`${styles.headlineWord} ${word.variant === 'fill' ? styles.headlineFill : styles.headlineOutline}`}
+              initial={{ y: 60, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {word.text}
+            </motion.span>
+          ))}
+        </div>
+      </div>
+
+      <motion.div
+        className={`${styles.container} section-container`}
+        variants={slideFromLeft}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <ScrollReveal direction="up">
           <div className={styles.header}>
-            <span className="section-eyebrow">Contact</span>
+            <div className={styles.eyebrowRow}>
+              <span className={styles.dash} />
+              <span className="section-eyebrow">Contactez-nous</span>
+              <span className={styles.dash} />
+            </div>
             <h2 className="section-title">Parlons de Votre Projet</h2>
           </div>
         </ScrollReveal>
 
-        <div className={styles.grid}>
+        <div className={styles.mapFormGrid}>
           <ScrollReveal direction="left" delay={0.1}>
-            <div className={styles.infoGrid}>
-              <div className={styles.infoCard}>
-                <MapPin size={20} className={styles.infoIcon} />
-                <h4 className={styles.infoTitle}>Adresse</h4>
-                <p className={styles.infoText}>
-                  12 Boulevard Zerktouni<br />
-                  Casablanca 20100, Maroc
-                </p>
-              </div>
-
-              <div className={styles.infoCard}>
-                <Phone size={20} className={styles.infoIcon} />
-                <h4 className={styles.infoTitle}>Téléphone</h4>
-                <p className={styles.infoText}>
-                  +212 6 00 00 00 00<br />
-                  +212 5 00 00 00 00
-                </p>
-              </div>
-
-              <div className={styles.infoCard}>
-                <Mail size={20} className={styles.infoIcon} />
-                <h4 className={styles.infoTitle}>Email</h4>
-                <p className={styles.infoText}>
-                  contact@tritor.ma<br />
-                  reservations@tritor.ma
-                </p>
-              </div>
-
-              <div className={styles.infoCard}>
-                <Clock size={20} className={styles.infoIcon} />
-                <h4 className={styles.infoTitle}>Horaires</h4>
-                <p className={styles.infoText}>
-                  Lun–Sam: 9h – 19h<br />
-                  Dimanche: Sur RDV
-                </p>
-              </div>
-            </div>
+            <a
+              href="https://share.google/VOBqqpUPax1H4q0Xz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.mapWrap}
+            >
+              <iframe
+                className={styles.mapFrame}
+                title="Localisation"
+                src={`https://maps.google.com/maps?q=${MAP_QUERY}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <motion.div
+                className={styles.mapOverlayCard}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <span className={styles.mapOverlayName}>Notre Adresse</span>
+                <span className={styles.mapOverlayAddress}>
+                  1er Étage, 36 Boulevard du Nil<br />
+                  Casablanca 20250, Maroc
+                </span>
+                <span className={styles.mapOverlayLink}>
+                  <Navigation size={13} /> Voir sur Google Maps
+                </span>
+              </motion.div>
+            </a>
           </ScrollReveal>
 
-          <ScrollReveal direction="right" delay={0.1}>
+          <ScrollReveal direction="right" delay={0.15}>
             <form className={styles.form} onSubmit={handleSubmit}>
+              <h3 className={styles.formTitle}>
+                Demandez votre devis<br />personnalisé
+              </h3>
+
               <div className={styles.formFields}>
-                <input
-                  type="text"
-                  className={styles.input}
-                  placeholder="Votre nom"
-                  value={formData.name}
-                  onChange={handleChange('name')}
-                  required
-                />
-                <input
-                  type="email"
-                  className={styles.input}
-                  placeholder="Votre email"
-                  value={formData.email}
-                  onChange={handleChange('email')}
-                  required
-                />
-                <input
-                  type="text"
-                  className={styles.input}
-                  placeholder="Sujet"
-                  value={formData.subject}
-                  onChange={handleChange('subject')}
-                />
-                <textarea
-                  className={styles.textarea}
-                  rows={4}
-                  placeholder="Votre message..."
-                  value={formData.message}
-                  onChange={handleChange('message')}
-                  required
-                />
+                <div className={styles.inputGroup}>
+                  <input
+                    type="text"
+                    className={styles.input}
+                    placeholder="Votre nom"
+                    value={formData.name}
+                    onChange={handleChange('name')}
+                    required
+                  />
+                  <User size={16} className={styles.inputIcon} />
+                </div>
+
+                <div className={styles.inputGroup}>
+                  <input
+                    type="email"
+                    className={styles.input}
+                    placeholder="Votre adresse email"
+                    value={formData.email}
+                    onChange={handleChange('email')}
+                    required
+                  />
+                  <Mail size={16} className={styles.inputIcon} />
+                </div>
+
+                <div className={styles.inputGroup}>
+                  <input
+                    type="text"
+                    className={styles.input}
+                    placeholder="Sujet"
+                    value={formData.subject}
+                    onChange={handleChange('subject')}
+                  />
+                  <Tag size={16} className={styles.inputIcon} />
+                </div>
+
+                <div className={styles.inputGroup}>
+                  <textarea
+                    className={styles.textarea}
+                    rows={4}
+                    placeholder="Votre message..."
+                    value={formData.message}
+                    onChange={handleChange('message')}
+                    required
+                  />
+                  <MessageSquare size={16} className={styles.inputIconArea} />
+                </div>
               </div>
 
               <motion.button
@@ -124,8 +191,8 @@ export default function Contact() {
               >
                 <AnimatePresence mode="wait">
                   {submitState === 'idle' && (
-                    <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                      Envoyer le Message
+                    <motion.span key="idle" className={styles.submitIdleText} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                      Envoyer un Message <Send size={14} />
                     </motion.span>
                   )}
                   {submitState === 'loading' && (
@@ -149,29 +216,8 @@ export default function Contact() {
           </ScrollReveal>
         </div>
 
-        <ScrollReveal direction="up" delay={0.2}>
-          <div className={styles.map}>
-            <div className={styles.mapPlaceholder}>
-              <div className={styles.mapPin} />
-              <span className={styles.mapCity}>CASABLANCA</span>
-              <span className={styles.mapLabel}>12 Boulevard Zerktouni</span>
-              <div className={styles.mapGrid} />
-            </div>
-          </div>
-        </ScrollReveal>
-      </div>
+      </motion.div>
 
-      <a
-        href="https://wa.me/212600000000"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.whatsapp}
-        aria-label="Discutez avec nous sur WhatsApp"
-      >
-        <div className={styles.whatsappRipple} />
-        <MessageCircle size={24} />
-        <span className={styles.whatsappTooltip}>Discutez avec nous</span>
-      </a>
     </section>
   );
 }

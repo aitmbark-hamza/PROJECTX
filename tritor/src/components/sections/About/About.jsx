@@ -1,27 +1,19 @@
+import { motion } from 'framer-motion';
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
 import GoldLine from '../../ui/GoldLine/GoldLine';
 import Button from '../../ui/Button/Button';
 import { useParallax } from '../../../hooks/useParallax';
-import { useScrollReveal } from '../../../hooks/useScrollReveal';
-import { useCountUp } from '../../../hooks/useCountUp';
+import { slideFromLeft } from '../../../animations/variants';
 import styles from './About.module.css';
 
-const statsData = [
-  { number: '150+', label: 'Événements' },
-  { number: '8', label: 'Ans d\'Expérience' },
-  { number: '98%', label: 'Clients Satisfaits' },
+const values = [
+  'Excellence',
+  'Produits frais et de qualité',
+  'Service personnalisé',
+  'Professionnalisme',
+  'Respect des délais',
+  'Satisfaction client',
 ];
-
-function StatItem({ stat }) {
-  const [ref, isVisible] = useScrollReveal({ threshold: 0.5 });
-  const count = useCountUp(stat.number, isVisible);
-  return (
-    <div ref={ref} className={styles.stat}>
-      <span className={styles.statNumber}>{count}</span>
-      <span className={styles.statLabel}>{stat.label}</span>
-    </div>
-  );
-}
 
 export default function About() {
   const [imageRef, offsetY] = useParallax(0.12);
@@ -32,7 +24,13 @@ export default function About() {
       <div className={styles.sectionBg} />
       <div className={styles.sectionBgOverlay} />
 
-      <div className={`${styles.container} section-container`}>
+      <motion.div
+        className={`${styles.container} section-container`}
+        variants={slideFromLeft}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className={styles.grid}>
           
           <ScrollReveal direction="left" className={styles.imageWrapper}>
@@ -55,41 +53,43 @@ export default function About() {
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={0.15} className={styles.content}>
-            <span className="section-eyebrow">Notre Histoire</span>
-            <h2 className="section-title">L'Excellence comme Philosophie</h2>
+            <span className="section-eyebrow">À Propos</span>
+            <h2 className="section-title">Une Passion Pour l'Excellence</h2>
 
             <div className={styles.text}>
               <p>
-                Depuis notre création, Tritor incarne une vision unique de l'événementiel —
-                où chaque détail est pensé, chaque émotion anticipée, chaque instant
-                préservé comme une œuvre d'art.
+                La Table de la Cantine met son savoir-faire au service de vos événements afin d'offrir une
+                expérience culinaire unique. Notre équipe veille à chaque détail pour garantir qualité,
+                fraîcheur et satisfaction.
               </p>
               <p>
-                Nous ne concevons pas des événements. Nous créons des expériences qui
-                transcendent l'ordinaire, des moments qui deviennent légendaires.
-                Notre exigence est simple : faire de chaque rassemblement un souvenir
-                impérissable.
+                Grâce à notre expérience et à notre engagement, nous proposons des prestations personnalisées
+                répondant aux exigences des particuliers comme des professionnels.
               </p>
             </div>
 
-            <div className={styles.stats}>
-              {statsData.map((stat) => (
-                <StatItem key={stat.label} stat={stat} />
+            <h3 className={styles.valuesTitle}>Nos Valeurs</h3>
+            <div className={styles.values}>
+              {values.map((value) => (
+                <div key={value} className={styles.valueItem}>
+                  <span className={styles.valueDot} />
+                  <span className={styles.valueLabel}>{value}</span>
+                </div>
               ))}
             </div>
 
             <GoldLine width="48px" />
 
             <div className={styles.footerRow}>
-              <div className={styles.signature}>Tritor</div>
+              <div className={styles.signature}>La Table de la Cantine</div>
               <Button variant="outline" href="#gallery">
-                Découvrir Notre Univers
+                Découvrir Nos Réalisations
               </Button>
             </div>
           </ScrollReveal>
 
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

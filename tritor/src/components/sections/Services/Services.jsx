@@ -1,38 +1,45 @@
 import { motion } from 'framer-motion';
-import { Heart, Diamond, Wine, UtensilsCrossed, Building2, ArrowRight } from 'lucide-react';
+import { Sparkles, Heart, Diamond, Wine, UtensilsCrossed, Calendar, ArrowRight } from 'lucide-react';
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
+import { slideFromRight } from '../../../animations/variants';
 import styles from './Services.module.css';
 
 const services = [
   {
+    icon: Sparkles,
+    title: 'Organisation des Soirées',
+    description: 'Création d\'événements élégants et sur mesure pour des moments inoubliables.',
+    category: 'Événements',
+  },
+  {
     icon: Heart,
-    title: 'Mariages',
-    description: 'Célébrez votre union avec raffinement absolu, dans des lieux d\'exception.',
-    category: 'Cérémonie',
+    title: 'Fêtes de Mariage',
+    description: 'Prestations complètes pour célébrer votre mariage avec raffinement et excellence.',
+    category: 'Mariage',
   },
   {
     icon: Diamond,
-    title: 'Fianiailles',
-    description: 'Une déclaration inoubliable, sublimée par une mise en scène unique.',
+    title: 'Fiançailles',
+    description: 'Des réceptions conviviales et élégantes adaptées à vos envies.',
     category: 'Célébration',
   },
   {
     icon: Wine,
-    title: 'Dîners Cocktails',
-    description: 'L\'élégance liquide d\'une soirée parfaite, entre saveurs et lumière.',
-    category: 'Réception',
+    title: 'Cocktail Dînatoire',
+    description: 'Une sélection de bouchées et de mets raffinés pour vos réceptions et événements.',
+    category: 'Restauration',
   },
   {
     icon: UtensilsCrossed,
-    title: 'Buffets de Luxe',
-    description: 'Gastronomie et mise en scène d\'exception pour vos convives.',
-    category: 'Restoration',
+    title: 'Buffets',
+    description: 'Buffets variés et généreux préparés avec des produits frais et de qualité.',
+    category: 'Buffet',
   },
   {
-    icon: Building2,
-    title: 'Événements Corp.',
-    description: 'Impressionnez, fédérez, inspirez — des événements à votre image.',
-    category: 'Professionnel',
+    icon: Calendar,
+    title: 'Tous Types d\'Événements',
+    description: 'Anniversaires, événements d\'entreprise, réceptions privées et célébrations familiales.',
+    category: 'Sur Mesure',
   },
 ];
 
@@ -53,14 +60,19 @@ export default function Services() {
         <div className={styles.videoOverlay} />
       </div>
 
-      <div className={`${styles.contentWrapper} section-container`}>
+      <motion.div
+        className={`${styles.contentWrapper} section-container`}
+        variants={slideFromRight}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <ScrollReveal direction="up">
           <div className={styles.header}>
-            <span className="section-eyebrow">Notre Savoir-Faire</span>
-            <h2 className="section-title">Des Prestations d'Exception</h2>
+            <span className="section-eyebrow">Nos Services</span>
+            <h2 className="section-title">Des Prestations sur Mesure</h2>
             <p className="section-subtitle">
-              Chaque service est conçu sur mesure, alliant créativité, rigueur et une
-              attention infinie aux détails les plus subtils.
+              Nous proposons une gamme complète de services traiteur adaptés à tous vos événements, alliant qualité, fraîcheur et professionnalisme.
             </p>
           </div>
         </ScrollReveal>
@@ -89,7 +101,7 @@ export default function Services() {
             );
           })}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -3,16 +3,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../../ui/Button/Button';
 import styles from './Hero.module.css';
 
+// Each slide needs an `overlay` color — it feeds the gradient that darkens
+// the photo so the title/eyebrow/CTAs stay readable on top of it.
 const bgImages = [
-  { src: '/images/hero-1.jpg',  },
-  { src: '/images/hero-2.jpg', },
-  { src: '/images/hero-3.jpg',  },
+  { src: '/images/hero-1.jpg', overlay: 'rgba(10, 9, 6, 0.55)' },
+  { src: '/images/hero-2.jpg', overlay: 'rgba(12, 10, 6, 0.6)' },
+  { src: '/images/hero-3.jpg', overlay: 'rgba(8, 8, 8, 0.55)' },
 ];
 
 const titleLines = [
   { text: "L'Art de", italic: true, gold: false },
-  { text: 'Créer des', italic: false, gold: false },
-  { text: 'Moments', italic: false, gold: true },
+  { text: 'Sublimer', italic: false, gold: false },
+  { text: 'Vos Événements', italic: false, gold: true },
 ];
 
 export default function Hero() {
@@ -115,7 +117,7 @@ export default function Hero() {
           animate="visible"
         >
           <motion.span className={styles.eyebrow} variants={eyebrowVariants}>
-            EST. 2024 · CASABLANCA, MAROC
+            CASABLANCA, MAROC
           </motion.span>
 
           <h1 className={styles.title}>
@@ -132,15 +134,18 @@ export default function Hero() {
           </h1>
 
           <motion.p className={styles.subtitle} variants={subtitleVariants}>
-            Chaque événement est une œuvre unique, conçue pour transcender l'ordinaire.
+            Service traiteur haut de gamme pour mariages, fiançailles, soirées privées, cocktails dînatoires et événements professionnels à Casablanca.
+          </motion.p>
+          <motion.p className={styles.description} variants={subtitleVariants}>
+            La Table de la Cantine vous accompagne dans tous vos événements avec des prestations raffinées, des saveurs authentiques et un service personnalisé pensé dans les moindres détails.
           </motion.p>
 
           <motion.div className={styles.ctas} variants={ctaVariants}>
             <Button variant="primary" href="#booking">
-              Demander un Devis
+              Demander un devis
             </Button>
-            <Button variant="outline" href="#services">
-              Découvrir
+            <Button variant="outline" href="#contact">
+              Nous contacter
             </Button>
           </motion.div>
         </motion.div>
@@ -154,7 +159,7 @@ export default function Hero() {
       </motion.div>
 
       <div className={styles.socialSide}>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="Instagram">
+        <a href="https://instagram.com/mohcine_tazi" target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="Instagram">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />

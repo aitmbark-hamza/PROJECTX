@@ -8,11 +8,10 @@ const navLinks = [
   { label: 'Services', href: '#services' },
   { label: 'À Propos', href: '#about' },
   { label: 'Galerie', href: '#gallery' },
-  { label: 'Forfaits', href: '#packages' },
   { label: 'Contact', href: '#contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onBookingClick }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -86,7 +85,7 @@ export default function Navbar() {
             custom={0}
             variants={staggerVariants}
           >
-            TRITOR
+            <img src="/images/LOGO.png" alt="Tritor" className={styles.logoImg} />
           </motion.a>
 
           <div className={styles.links}>
@@ -105,6 +104,14 @@ export default function Navbar() {
                 {link.label}
               </motion.a>
             ))}
+            <motion.button
+              className={styles.bookingBtn}
+              custom={navLinks.length + 1}
+              variants={staggerVariants}
+              onClick={onBookingClick}
+            >
+              Devis
+            </motion.button>
           </div>
 
           <motion.button
@@ -154,6 +161,17 @@ export default function Navbar() {
                     {link.label}
                   </motion.a>
                 ))}
+                <motion.button
+                  className={styles.mobileBookingBtn}
+                  custom={navLinks.length}
+                  variants={mobileLinkVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  onClick={() => { onBookingClick(); }}
+                >
+                  Devis
+                </motion.button>
               </div>
 
               <motion.div
@@ -162,7 +180,7 @@ export default function Navbar() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
               >
-                <p className={styles.mobileTagline}>Où les moments deviennent légendaires</p>
+                <p className={styles.mobileTagline}>Des prestations traiteur de qualité à Casablanca</p>
                 <div className={styles.mobileGoldLine} />
               </motion.div>
             </motion.div>
