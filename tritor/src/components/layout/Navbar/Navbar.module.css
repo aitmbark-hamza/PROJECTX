@@ -197,6 +197,10 @@
   margin-bottom: 12px;
 }
 
+.mobileLang {
+  margin-bottom: 12px;
+}
+
 .mobileGoldLine {
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, var(--color-gold) 100%);

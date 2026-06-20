@@ -2,16 +2,16 @@
   "navbar": {
     "links": { "home": "Home", "services": "Services", "about": "About", "gallery": "Gallery", "contact": "Contact" },
     "booking": "Quote",
-    "tagline": "Quality catering services in Casablanca",
-    "toggleMenu": "Toggle menu"
+    "tagline": "Quality catering in Casablanca",
+    "toggleMenu": "Menu"
   },
   "hero": {
     "eyebrow": "CASABLANCA, MOROCCO",
     "title1": "The Art of",
     "title2": "Elevating",
     "title3": "Your Events",
-    "subtitle": "High-end catering service for weddings, engagements, private parties, cocktail dinners and corporate events in Casablanca.",
-    "description": "La Table de la Cantine accompanies you in all your events with refined services, authentic flavors and personalized service thought through to the smallest detail.",
+    "subtitle": "High-end catering for weddings, engagements, cocktails and events in Casablanca.",
+    "description": "Refined services, authentic flavors, personalized care for every moment.",
     "ctaPrimary": "Request a Quote",
     "ctaSecondary": "Contact Us",
     "scroll": "SCROLL",
@@ -20,44 +20,44 @@
   },
   "services": {
     "eyebrow": "Our Services",
-    "title": "Tailored Services",
-    "subtitle": "We offer a complete range of catering services adapted to all your events, combining quality, freshness and professionalism.",
+    "title": "Tailored Catering",
+    "subtitle": "A complete range of catering services for all your events.",
     "items": [
-      { "title": "Event Planning", "description": "Creating elegant and customized events for unforgettable moments.", "category": "Events" },
-      { "title": "Weddings", "description": "Complete services to celebrate your wedding with refinement and excellence.", "category": "Wedding" },
-      { "title": "Engagements", "description": "Friendly and elegant receptions adapted to your wishes.", "category": "Celebration" },
-      { "title": "Cocktail Dinner", "description": "A selection of refined bites and dishes for your receptions and events.", "category": "Catering" },
-      { "title": "Buffets", "description": "Varied and generous buffets prepared with fresh, quality products.", "category": "Buffet" },
-      { "title": "All Event Types", "description": "Birthdays, corporate events, private receptions and family celebrations.", "category": "Custom" }
+      { "title": "Event Planning", "description": "Elegant, customized events.", "category": "Events" },
+      { "title": "Weddings", "description": "Your wedding, celebrated with refinement.", "category": "Wedding" },
+      { "title": "Engagements", "description": "Warm and elegant receptions.", "category": "Celebration" },
+      { "title": "Cocktail Dinner", "description": "Refined bites for your receptions.", "category": "Catering" },
+      { "title": "Buffets", "description": "Varied buffets, fresh quality products.", "category": "Buffet" },
+      { "title": "All Events", "description": "Birthdays, corporate, private parties.", "category": "Custom" }
     ],
     "learnMore": "Learn more"
   },
   "about": {
     "eyebrow": "About Us",
     "title": "A Passion for Excellence",
-    "paragraph1": "La Table de la Cantine puts its expertise at the service of your events to offer a unique culinary experience. Our team takes care of every detail to guarantee quality, freshness and satisfaction.",
-    "paragraph2": "Thanks to our experience and commitment, we offer personalized services meeting the requirements of both individuals and professionals.",
+    "paragraph1": "La Table de la Cantine brings its expertise to your events for a unique culinary experience.",
+    "paragraph2": "Personalized services for individuals and professionals.",
     "valuesTitle": "Our Values",
-    "values": ["Excellence", "Fresh and quality products", "Personalized service", "Professionalism", "Respect for deadlines", "Customer satisfaction"],
+    "values": ["Excellence", "Fresh products", "Personalized service", "Professionalism", "On-time delivery", "Satisfaction"],
     "signature": "La Table de la Cantine",
-    "cta": "Discover Our Work",
-    "imageAlt": "La Table de la Cantine - Caterer in Casablanca"
+    "cta": "Our Work",
+    "imageAlt": "La Table de la Cantine - Caterer Casablanca"
   },
   "whyChooseUs": {
     "eyebrow": "Why Choose Us?",
     "title": "Quality Above All",
     "reasons": [
       "Fresh products carefully selected",
-      "Professional and punctual service",
-      "Services adapted to all events",
+      "Professional, punctual service",
+      "Tailored solutions",
       "Personalized support",
-      "Guaranteed quality and excellence"
+      "Guaranteed quality"
     ]
   },
   "gallery": {
     "eyebrow": "Our Portfolio",
     "title": "Our Work",
-    "description": "Discover in pictures some of our creations and events carried out with passion and expertise.",
+    "description": "Some of our creations made with passion.",
     "categories": ["All", "Buffets", "Cocktails", "Events"],
     "items": [
       { "title": "Reception Buffet", "category": "Buffets" },
@@ -67,7 +67,24 @@
       { "title": "Cocktail Evening", "category": "Cocktails" },
       { "title": "Corporate Seminar", "category": "Events" },
       { "title": "Wedding Buffet", "category": "Buffets" },
-      { "title": "Cocktail Bar", "category": "Cocktails" }
+      { "title": "Cocktail Bar", "category": "Cocktails" },
+      { "title": "Outdoor Wedding", "category": "Events" },
+      { "title": "Mediterranean Buffet", "category": "Buffets" },
+      { "title": "Gala Cocktail", "category": "Cocktails" },
+      { "title": "Prestige Birthday", "category": "Events" },
+      { "title": "Oriental Buffet", "category": "Buffets" },
+      { "title": "Welcome Cocktail", "category": "Cocktails" },
+      { "title": "Wedding Ceremony", "category": "Events" },
+      { "title": "Gourmet Buffet", "category": "Buffets" },
+      { "title": "Beach Cocktail", "category": "Cocktails" },
+      { "title": "Corporate Evening", "category": "Events" },
+      { "title": "Royal Buffet", "category": "Buffets" },
+      { "title": "Terrace Cocktail", "category": "Cocktails" },
+      { "title": "Luxury Reception", "category": "Events" },
+      { "title": "Gala Buffet", "category": "Buffets" },
+      { "title": "Lounge Cocktail", "category": "Cocktails" },
+      { "title": "Family Celebration", "category": "Events" },
+      { "title": "Catering Buffet", "category": "Buffets" }
     ],
     "view": "View",
     "close": "Close",
@@ -78,16 +95,16 @@
     "badge": "Verified Google Reviews",
     "title": "Testimonials",
     "titleAr": "آراء عملائنا",
-    "basedOn": "Based on {{count}} Google reviews",
-    "trustBanner": "What our clients say about us",
-    "cta": "See all reviews on Google",
+    "basedOn": "Based on {{count}} reviews",
+    "trustBanner": "What clients say",
+    "cta": "See all reviews",
     "previous": "Previous",
     "next": "Next",
-    "goTo": "Go to review {{index}}",
+    "goTo": "Review {{index}}",
     "items": [
-      { "name": "Sarah B.", "initials": "SB", "text": "Impeccable service and high quality buffet. All our guests were delighted.", "date": "June 2026" },
-      { "name": "Yassine M.", "initials": "YM", "text": "A professional and attentive team. I highly recommend.", "date": "May 2026" },
-      { "name": "Nadia E.", "initials": "NE", "text": "Excellent catering service for our wedding. Thank you for your professionalism and expertise.", "date": "April 2026" }
+      { "name": "Sarah B.", "initials": "SB", "text": "Impeccable service, high quality buffet. All guests delighted.", "date": "June 2026" },
+      { "name": "Yassine M.", "initials": "YM", "text": "Professional, attentive team. I recommend.", "date": "May 2026" },
+      { "name": "Nadia E.", "initials": "NE", "text": "Excellent catering for our wedding.", "date": "April 2026" }
     ],
     "stats": [
       { "value": "5.0/5", "label": "Average Rating" },
@@ -99,15 +116,15 @@
   "booking": {
     "eyebrow": "Request a Quote",
     "title": "Have a Project?",
-    "eventTypes": ["Wedding / Reception", "Seminar / Conference", "Cocktail / Buffet", "Birthday", "Corporate Event", "Other"],
+    "eventTypes": ["Wedding", "Seminar", "Cocktail", "Birthday", "Corporate", "Other"],
     "labels": {
-      "name": "Full Name",
+      "name": "Name",
       "email": "Email",
       "phone": "Phone",
       "eventType": "Event Type",
-      "date": "Preferred Date",
-      "guests": "Number of Guests",
-      "budget": "Estimated Budget:",
+      "date": "Date",
+      "guests": "Guests",
+      "budget": "Budget:",
       "message": "Message"
     },
     "placeholders": {
@@ -115,17 +132,17 @@
       "email": "email@example.com",
       "phone": "+212 6 XX XX XX XX",
       "eventType": "Select",
-      "message": "Tell us about your project..."
+      "message": "Your project..."
     },
     "budgetMin": "10,000 MAD",
     "budgetMax": "200,000+ MAD",
-    "submit": "Send Request",
+    "submit": "Send",
     "sending": "Sending...",
-    "sent": "Request sent!",
-    "error": "Please try again",
+    "sent": "Sent!",
+    "error": "Retry",
     "close": "Close",
-    "decrease": "Decrease",
-    "increase": "Increase"
+    "decrease": "Less",
+    "increase": "More"
   },
   "contact": {
     "headlineWords": [
@@ -133,36 +150,36 @@
       { "text": "EXCELLENCE", "variant": "fill" },
       { "text": "QUALITY", "variant": "outline" }
     ],
-    "eyebrow": "Contact Us",
-    "title": "Let's Talk About Your Project",
-    "addressTitle": "Our Address",
-    "address": "1st Floor, 36 Boulevard du Nil\nCasablanca 20250, Morocco",
-    "viewOnMap": "View on Google Maps",
-    "formTitle": "Request your\ncustom quote",
+    "eyebrow": "Contact",
+    "title": "Let's Talk",
+    "addressTitle": "Address",
+    "address": "1st Floor, 36 Bd du Nil\nCasablanca 20250",
+    "viewOnMap": "Google Maps",
+    "formTitle": "Custom quote",
     "placeholders": {
       "name": "Your name",
-      "email": "Your email address",
+      "email": "Your email",
       "subject": "Subject",
       "message": "Your message..."
     },
-    "submit": "Send Message",
+    "submit": "Send",
     "sending": "Sending...",
-    "sent": "Message sent!",
-    "error": "Please try again",
+    "sent": "Sent!",
+    "error": "Retry",
     "mapTitle": "Location"
   },
   "footer": {
     "logoAlt": "La Table de la Cantine",
-    "tagline": "La Table de la Cantine specializes in catering services and event organization in Casablanca. We put our passion and expertise at the service of your most beautiful moments.",
+    "tagline": "Catering and event organization in Casablanca. Passion and expertise for your finest moments.",
     "contactTitle": "Contact",
-    "address": "1st Floor, 36 Bd du Nil, Casablanca 20250",
+    "address": "1st Floor, 36 Bd du Nil, Casablanca",
     "phone": "06 50 46 09 50",
     "email": "latabledor5@gmail.com",
-    "linksTitle": "Quick Links",
+    "linksTitle": "Links",
     "links": ["Home", "Services", "About", "Gallery", "Contact"],
     "servicesTitle": "Services",
-    "services": ["Weddings", "Engagements", "Cocktail Dinners", "Buffets", "Event Planning", "Private & Corporate Events"],
-    "copyright": "© {{year}} La Table de la Cantine. All rights reserved.",
+    "services": ["Weddings", "Engagements", "Cocktails", "Buffets", "Evenings", "Private Events"],
+    "copyright": "© {{year}} La Table de la Cantine.",
     "credit": "Made with passion in Casablanca",
     "instagram": "Instagram"
   },

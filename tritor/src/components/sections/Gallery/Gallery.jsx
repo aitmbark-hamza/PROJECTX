@@ -1,41 +1,57 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
 import { slideFromLeft } from '../../../animations/variants';
 import styles from './Gallery.module.css';
 
-const categories = ['Tout', 'Buffets', 'Cocktails', 'Événements'];
-
-const galleryItems = [
-  { id: 1, src: '/images/gallery-1.jpg', category: 'Buffets', title: 'Buffet de Réception', aspect: '3/4' },
-  { id: 2, src: '/images/gallery-2.jpg', category: 'Cocktails', title: 'Cocktail DINatoire', aspect: '1/1' },
-  { id: 3, src: '/images/gallery-3.jpg', category: 'Événements', title: "Gala d'Entreprise", aspect: '4/3' },
-  { id: 4, src: '/images/gallery-4.jpg', category: 'Buffets', title: 'Buffet de Luxe', aspect: '3/4' },
-  { id: 5, src: '/images/gallery-5.jpg', category: 'Cocktails', title: 'Soirée Cocktail', aspect: '1/1' },
-  { id: 6, src: '/images/gallery-6.jpg', category: 'Événements', title: "Séminaire d'Entreprise", aspect: '4/3' },
-  { id: 7, src: '/images/gallery-7.jpg', category: 'Buffets', title: 'Buffet de Mariage', aspect: '3/4' },
-  { id: 8, src: '/images/gallery-8.jpg', category: 'Cocktails', title: 'Bar à Cocktails', aspect: '1/1' },
-];
-
 export default function Gallery() {
-  const [activeCategory, setActiveCategory] = useState('Tout');
+  const { t } = useTranslation();
+  const categories = t('gallery.categories', { returnObjects: true });
+  const defaultCat = Array.isArray(categories) ? categories[0] : 'Tout';
+  const rawItems = t('gallery.items', { returnObjects: true });
+  
+  const aspects = ['3/4', '1/1', '4/3'];
+  const galleryItems = Array.isArray(rawItems)
+    ? rawItems.map((item, i) => ({
+        ...item,
+        src: `/images/gallery-${i + 1}.jpg`,
+        aspect: aspects[i % aspects.length],
+      }))
+    : [];
+
+  const [activeCategory, setActiveCategory] = useState(defaultCat);
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  const filteredItems = activeCategory === 'Tout'
-    ? galleryItems
-    : galleryItems.filter((item) => item.category === activeCategory);
+  const filteredItems = Array.isArray(galleryItems)
+    ? activeCategory === defaultCat
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === activeCategory)
+    : [];
 
   const openLightbox = (index) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
 
   const goNext = useCallback(() => {
+    if (!filteredItems.length) return;
     setLightboxIndex((prev) => (prev + 1) % filteredItems.length);
   }, [filteredItems.length]);
 
   const goPrev = useCallback(() => {
+    if (!filteredItems.length) return;
     setLightboxIndex((prev) => (prev - 1 + filteredItems.length) % filteredItems.length);
   }, [filteredItems.length]);
+
+  // Handle Swipe Gesture for Mobile
+  const handleDragEnd = (event, info) => {
+    const swipeThreshold = 50;
+    if (info.offset.x < -swipeThreshold) {
+      goNext();
+    } else if (info.offset.x > swipeThreshold) {
+      goPrev();
+    }
+  };
 
   useEffect(() => {
     const handleKey = (e) => {
@@ -53,15 +69,6 @@ export default function Gallery() {
     return () => { document.body.style.overflow = ''; };
   }, [lightboxIndex]);
 
-  const getItemStyle = (aspect) => {
-    switch (aspect) {
-      case '3/4': return { aspectRatio: '3/4' };
-      case '1/1': return { aspectRatio: '1/1' };
-      case '4/3': return { aspectRatio: '4/3' };
-      default: return { aspectRatio: '1/1' };
-    }
-  };
-
   return (
     <section className={styles.gallery} id="gallery">
       <motion.div
@@ -69,21 +76,19 @@ export default function Gallery() {
         variants={slideFromLeft}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: false, amount: 0.1 }}
       >
         <ScrollReveal direction="up">
           <div className={styles.header}>
-            <span className="section-eyebrow">Notre Portfolio</span>
-            <h2 className="section-title">Nos Réalisations</h2>
-            <p className={styles.description}>
-              Découvrez en images quelques-unes de nos créations et événements réalisés avec passion et savoir-faire.
-            </p>
+            <span className="section-eyebrow">{t('gallery.eyebrow')}</span>
+            <h2 className="section-title">{t('gallery.title')}</h2>
+            <p className={styles.description}>{t('gallery.description')}</p>
           </div>
         </ScrollReveal>
 
         <ScrollReveal direction="up" delay={0.1}>
           <div className={styles.filters}>
-            {categories.map((cat) => (
+            {Array.isArray(categories) && categories.map((cat) => (
               <button
                 key={cat}
                 className={`${styles.filter} ${activeCategory === cat ? styles.filterActive : ''}`}
@@ -99,13 +104,11 @@ export default function Gallery() {
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item, i) => (
               <motion.div
-                key={item.id}
+                key={item.title + i}
                 className={styles.item}
                 style={{
-                  ...getItemStyle(item.aspect),
+                  aspectRatio: item.aspect || '1/1',
                   backgroundImage: `url(${item.src})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
                 }}
                 layout
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -117,7 +120,7 @@ export default function Gallery() {
                 <div className={styles.itemOverlay}>
                   <div className={styles.itemContent}>
                     <span className={styles.itemCategory}>{item.category}</span>
-                    <span className={styles.itemView}>Voir &rarr;</span>
+                    <span className={styles.itemView}>{t('gallery.view')} &rarr;</span>
                   </div>
                 </div>
                 <div className={styles.itemDecoration}>
@@ -130,7 +133,7 @@ export default function Gallery() {
       </motion.div>
 
       <AnimatePresence>
-        {lightboxIndex !== null && (
+        {lightboxIndex !== null && filteredItems[lightboxIndex] && (
           <motion.div
             className={styles.lightbox}
             initial={{ opacity: 0 }}
@@ -139,17 +142,17 @@ export default function Gallery() {
             transition={{ duration: 0.3 }}
             onClick={closeLightbox}
           >
-            <button className={styles.lightboxClose} onClick={closeLightbox} aria-label="Fermer">
-              <X size={24} />
+            <button className={styles.lightboxClose} onClick={closeLightbox} aria-label={t('gallery.close')}>
+              <X size={22} />
             </button>
 
             {filteredItems.length > 1 && (
               <>
-                <button className={`${styles.lightboxNav} ${styles.lightboxPrev}`} onClick={(e) => { e.stopPropagation(); goPrev(); }} aria-label="Précédent">
-                  <ChevronLeft size={32} />
+                <button className={`${styles.lightboxNav} ${styles.lightboxPrev}`} onClick={(e) => { e.stopPropagation(); goPrev(); }} aria-label={t('gallery.previous')}>
+                  <ChevronLeft size={28} />
                 </button>
-                <button className={`${styles.lightboxNav} ${styles.lightboxNext}`} onClick={(e) => { e.stopPropagation(); goNext(); }} aria-label="Suivant">
-                  <ChevronRight size={32} />
+                <button className={`${styles.lightboxNav} ${styles.lightboxNext}`} onClick={(e) => { e.stopPropagation(); goNext(); }} aria-label={t('gallery.next')}>
+                  <ChevronRight size={28} />
                 </button>
               </>
             )}
@@ -157,20 +160,19 @@ export default function Gallery() {
             <motion.div
               className={styles.lightboxContent}
               key={lightboxIndex}
-              initial={{ opacity: 0, scale: 0.92 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.92 }}
-              transition={{ duration: 0.4 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.6}
+              onDragEnd={handleDragEnd}
             >
               <div
                 className={styles.lightboxImage}
-                style={{
-                  backgroundImage: `url(${filteredItems[lightboxIndex].src})`,
-                  backgroundSize: 'contain',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }}
+                style={{ backgroundImage: `url(${filteredItems[lightboxIndex].src})` }}
               >
                 <div className={styles.lightboxPlaceholder}>
                   <span className={styles.lightboxLabel}>{filteredItems[lightboxIndex].title}</span>

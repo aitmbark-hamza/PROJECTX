@@ -4,7 +4,7 @@ export function useScrollReveal(options = {}) {
   const {
     threshold = 0.15,
     rootMargin = '0px',
-    triggerOnce = true,
+    triggerOnce = false,
   } = options;
 
   const ref = useRef(null);

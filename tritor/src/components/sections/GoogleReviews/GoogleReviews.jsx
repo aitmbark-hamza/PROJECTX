@@ -1,41 +1,16 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import { Star, ThumbsUp, Award, Truck, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { slideFromRight } from '../../../animations/variants';
 import styles from './GoogleReviews.module.css';
 
-const reviews = [
-  {
-    name: 'Sarah B.',
-    initials: 'SB',
-    rating: 5,
-    text: 'Service impeccable et buffet de grande qualité. Tous nos invités étaient ravis.',
-    date: 'Juin 2026',
-  },
-  {
-    name: 'Yassine M.',
-    initials: 'YM',
-    rating: 5,
-    text: 'Une équipe professionnelle et attentive. Je recommande vivement.',
-    date: 'Mai 2026',
-  },
-  {
-    name: 'Nadia E.',
-    initials: 'NE',
-    rating: 5,
-    text: 'Un excellent service traiteur pour notre mariage. Merci pour votre sérieux et votre savoir-faire.',
-    date: 'Avril 2026',
-  },
-];
-
-const stats = [
-  { icon: Star, value: '5.0/5', label: 'Note Moyenne' },
-  { icon: ThumbsUp, value: '100%', label: 'Clients Satisfaits' },
-  { icon: Award, value: 'Qualité', label: 'Produits Frais' },
-  { icon: Truck, value: 'Pro', label: 'Service Fiable' },
-];
+const icons = [Star, ThumbsUp, Award, Truck];
 
 export default function GoogleReviews() {
+  const { t } = useTranslation();
+  const reviews = t('reviews.items', { returnObjects: true });
+  const stats = t('reviews.stats', { returnObjects: true });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [direction, setDirection] = useState(0);
@@ -45,7 +20,8 @@ export default function GoogleReviews() {
   const constraintsRef = useRef(null);
 
   const itemsPerView = 3;
-  const maxIndex = Math.max(0, reviews.length - itemsPerView);
+  const reviewsArray = Array.isArray(reviews) ? reviews : [];
+  const maxIndex = Math.max(0, reviewsArray.length - itemsPerView);
 
   const targetRating = 5.0;
   const targetCount = 3;
@@ -120,13 +96,13 @@ export default function GoogleReviews() {
         variants={slideFromRight}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: false, amount: 0.2 }}
       >
         <motion.div
           className={styles.header}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <div className={styles.badgeGoogle}>
@@ -136,12 +112,12 @@ export default function GoogleReviews() {
               <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
               <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
             </svg>
-            <span className={styles.badgeText}>Avis Google Vérifiés</span>
+            <span className={styles.badgeText}>{t('reviews.badge')}</span>
           </div>
 
           <div className={styles.titleRow}>
-            <h2 className={styles.titleFr}>Témoignages</h2>
-            <span className={styles.titleAr}>آراء عملائنا</span>
+            <h2 className={styles.titleFr}>{t('reviews.title')}</h2>
+            <span className={styles.titleAr}>{t('reviews.titleAr')}</span>
           </div>
 
           <div className={styles.ratingRow}>
@@ -150,7 +126,7 @@ export default function GoogleReviews() {
               <div className={styles.ratingStars}>
                 <div className={styles.starsRow}>{renderStars(5, 22)}</div>
                 <span className={styles.totalReviews}>
-                  Basé sur <strong>{displayCount}</strong> avis Google
+                  {t('reviews.basedOn', { count: displayCount })}
                 </span>
               </div>
             </div>
@@ -161,15 +137,15 @@ export default function GoogleReviews() {
           className={styles.trustBanner}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
           <span className={styles.trustIcon}>✦</span>
-          Ce que nos clients disent de nous
+          {t('reviews.trustBanner')}
         </motion.div>
 
         <div className={styles.carouselWrapper} ref={constraintsRef}>
-          <button className={`${styles.arrow} ${styles.arrowLeft}`} onClick={goPrev} aria-label="Précédent">
+          <button className={`${styles.arrow} ${styles.arrowLeft}`} onClick={goPrev} aria-label={t('reviews.previous')}>
             <ChevronLeft size={20} />
           </button>
 
@@ -207,7 +183,7 @@ export default function GoogleReviews() {
             </AnimatePresence>
           </div>
 
-          <button className={`${styles.arrow} ${styles.arrowRight}`} onClick={goNext} aria-label="Suivant">
+          <button className={`${styles.arrow} ${styles.arrowRight}`} onClick={goNext} aria-label={t('reviews.next')}>
             <ChevronRight size={20} />
           </button>
         </div>
@@ -218,7 +194,7 @@ export default function GoogleReviews() {
               key={i}
               className={`${styles.dot} ${i === currentIndex % (maxIndex + 1) ? styles.dotActive : ''}`}
               onClick={() => { setDirection(1); setCurrentIndex(i); }}
-              aria-label={`Aller à l'avis ${i + 1}`}
+              aria-label={t('reviews.goTo', { index: i + 1 })}
             />
           ))}
         </div>
@@ -227,20 +203,23 @@ export default function GoogleReviews() {
           className={styles.statsRow}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              className={styles.statCard}
-              whileHover={{ y: -4, transition: { duration: 0.3 } }}
-            >
-              <stat.icon size={20} className={styles.statIcon} />
-              <span className={styles.statValue}>{stat.value}</span>
-              <span className={styles.statLabel}>{stat.label}</span>
-            </motion.div>
-          ))}
+          {Array.isArray(stats) && stats.map((stat, i) => {
+            const Icon = icons[i % icons.length];
+            return (
+              <motion.div
+                key={stat.label}
+                className={styles.statCard}
+                whileHover={{ y: -4, transition: { duration: 0.3 } }}
+              >
+                <Icon size={20} className={styles.statIcon} />
+                <span className={styles.statValue}>{stat.value}</span>
+                <span className={styles.statLabel}>{stat.label}</span>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         <motion.a
@@ -250,7 +229,7 @@ export default function GoogleReviews() {
           className={styles.googleBtn}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ delay: 0.4, duration: 0.6 }}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -261,7 +240,7 @@ export default function GoogleReviews() {
             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
           </svg>
-          Voir tous les avis sur Google
+          {t('reviews.cta')}
           <ExternalLink size={16} />
         </motion.a>
       </motion.div>

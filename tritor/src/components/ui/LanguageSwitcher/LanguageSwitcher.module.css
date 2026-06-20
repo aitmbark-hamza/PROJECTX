@@ -1,0 +1,38 @@
+.switcher {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  color: var(--color-white-muted);
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+  line-height: 1;
+}
+
+.btn:hover {
+  color: var(--color-gold);
+  border-color: rgba(201, 168, 76, 0.5);
+}
+
+.active {
+  background: var(--color-gold);
+  color: var(--color-black);
+  border-color: var(--color-gold);
+}
+
+.active:hover {
+  background: var(--color-gold-light);
+  color: var(--color-black);
+  border-color: var(--color-gold-light);
+}

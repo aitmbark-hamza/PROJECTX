@@ -11,16 +11,18 @@ import GoogleReviews from './components/sections/GoogleReviews/GoogleReviews';
 import Booking from './components/sections/Booking/Booking';
 import Contact from './components/sections/Contact/Contact';
 import Cursor from './components/ui/Cursor/Cursor';
+import SplashScreen from './components/ui/SplashScreen/SplashScreen';
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   return (
     <LazyMotion features={domAnimation}>
+      <SplashScreen />
       <Cursor />
       <Navbar onBookingClick={() => setIsBookingOpen(true)} />
       <main>
-        <Hero />
+        <Hero onBookingClick={() => setIsBookingOpen(true)} />
         <Services />
         <About />
         <WhyChooseUs />

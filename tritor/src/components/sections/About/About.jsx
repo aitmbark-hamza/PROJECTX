@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
 import GoldLine from '../../ui/GoldLine/GoldLine';
 import Button from '../../ui/Button/Button';
@@ -6,21 +7,13 @@ import { useParallax } from '../../../hooks/useParallax';
 import { slideFromLeft } from '../../../animations/variants';
 import styles from './About.module.css';
 
-const values = [
-  'Excellence',
-  'Produits frais et de qualité',
-  'Service personnalisé',
-  'Professionnalisme',
-  'Respect des délais',
-  'Satisfaction client',
-];
-
 export default function About() {
+  const { t } = useTranslation();
   const [imageRef, offsetY] = useParallax(0.12);
+  const values = t('about.values', { returnObjects: true });
 
   return (
     <section className={styles.about} id="about">
-      {/* Premium background image layout layer */}
       <div className={styles.sectionBg} />
       <div className={styles.sectionBgOverlay} />
 
@@ -29,7 +22,7 @@ export default function About() {
         variants={slideFromLeft}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: false, amount: 0.2 }}
       >
         <div className={styles.grid}>
           
@@ -42,7 +35,7 @@ export default function About() {
               >
                 <img 
                   src="/images/gallery-25.jpg" 
-                  alt="Tritor Experience" 
+                  alt={t('about.imageAlt')}
                   className={styles.actualImage}
                   loading="lazy"
                 />
@@ -53,24 +46,17 @@ export default function About() {
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={0.15} className={styles.content}>
-            <span className="section-eyebrow">À Propos</span>
-            <h2 className="section-title">Une Passion Pour l'Excellence</h2>
+            <span className="section-eyebrow">{t('about.eyebrow')}</span>
+            <h2 className="section-title">{t('about.title')}</h2>
 
             <div className={styles.text}>
-              <p>
-                La Table de la Cantine met son savoir-faire au service de vos événements afin d'offrir une
-                expérience culinaire unique. Notre équipe veille à chaque détail pour garantir qualité,
-                fraîcheur et satisfaction.
-              </p>
-              <p>
-                Grâce à notre expérience et à notre engagement, nous proposons des prestations personnalisées
-                répondant aux exigences des particuliers comme des professionnels.
-              </p>
+              <p>{t('about.paragraph1')}</p>
+              <p>{t('about.paragraph2')}</p>
             </div>
 
-            <h3 className={styles.valuesTitle}>Nos Valeurs</h3>
+            <h3 className={styles.valuesTitle}>{t('about.valuesTitle')}</h3>
             <div className={styles.values}>
-              {values.map((value) => (
+              {Array.isArray(values) && values.map((value) => (
                 <div key={value} className={styles.valueItem}>
                   <span className={styles.valueDot} />
                   <span className={styles.valueLabel}>{value}</span>
@@ -81,9 +67,9 @@ export default function About() {
             <GoldLine width="48px" />
 
             <div className={styles.footerRow}>
-              <div className={styles.signature}>La Table de la Cantine</div>
+              <div className={styles.signature}>{t('about.signature')}</div>
               <Button variant="outline" href="#gallery">
-                Découvrir Nos Réalisations
+                {t('about.cta')}
               </Button>
             </div>
           </ScrollReveal>

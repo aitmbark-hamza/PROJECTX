@@ -1,6 +1,7 @@
 .gallery {
   background: var(--color-black);
-  padding: 160px 0;
+  padding: 140px 0;
+  overflow: hidden;
 }
 
 .container {
@@ -17,17 +18,18 @@
 .description {
   font-family: 'Inter', sans-serif;
   font-weight: 300;
-  font-size: 16px;
-  line-height: 28px;
+  font-size: 15px;
+  line-height: 1.7;
   color: var(--color-white-muted);
-  max-width: 620px;
+  max-width: 600px;
   margin: 16px auto 0;
 }
 
+/* Filters */
 .filters {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 48px;
   flex-wrap: wrap;
 }
@@ -36,19 +38,19 @@
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   padding: 10px 24px;
   color: var(--color-white-muted);
   background: transparent;
-  border: 1px solid rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.15);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .filter:hover {
   color: var(--color-gold);
-  border-color: rgba(201, 168, 76, 0.3);
+  border-color: rgba(201, 168, 76, 0.4);
 }
 
 .filterActive {
@@ -57,16 +59,12 @@
   border-color: var(--color-gold);
 }
 
-.filterActive:hover {
-  color: var(--color-black);
-  background: var(--color-gold-light);
-}
-
+/* Grid layout default (PC) */
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  max-width: 1200px;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 
@@ -76,8 +74,10 @@
   cursor: pointer;
   background-size: cover;
   background-position: center;
+  grid-column: span 4;
 }
 
+/* Hover effects (Only for desktop) */
 .itemOverlay {
   position: absolute;
   inset: 0;
@@ -85,12 +85,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.5s ease;
+  transition: background 0.4s ease;
   z-index: 2;
-}
-
-.item:hover .itemOverlay {
-  background: rgba(8, 8, 8, 0.7);
 }
 
 .itemContent {
@@ -99,13 +95,8 @@
   align-items: center;
   gap: 8px;
   opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
-}
-
-.item:hover .itemContent {
-  opacity: 1;
-  transform: translateY(0);
+  transform: translateY(15px);
+  transition: all 0.35s ease;
 }
 
 .itemCategory {
@@ -127,29 +118,44 @@
 
 .itemDecoration {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
+  bottom: 20px;
+  left: 20px;
   z-index: 1;
+  transition: opacity 0.3s ease;
 }
 
 .itemTitle {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--color-white);
-  opacity: 0.6;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* Lightbox */
+@media (min-width: 1025px) {
+  .item:hover .itemOverlay {
+    background: rgba(8, 8, 8, 0.75);
+  }
+  .item:hover .itemContent {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .item:hover .itemDecoration {
+    opacity: 0;
+  }
+}
+
+/* Lightbox overlay */
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(8, 8, 8, 0.95);
+  background: rgba(6, 6, 6, 0.98);
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(15px);
+  touch-action: none;
 }
 
 .lightboxClose {
@@ -160,13 +166,8 @@
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 10001;
-  padding: 8px;
-  transition: transform 0.3s ease;
-}
-
-.lightboxClose:hover {
-  transform: rotate(90deg);
+  z-index: 10002;
+  padding: 12px;
 }
 
 .lightboxNav {
@@ -174,118 +175,119 @@
   top: 50%;
   transform: translateY(-50%);
   color: var(--color-gold);
-  background: rgba(201, 168, 76, 0.1);
+  background: rgba(8, 8, 8, 0.4);
   border: 1px solid rgba(201, 168, 76, 0.2);
   cursor: pointer;
-  padding: 16px;
+  padding: 14px;
   z-index: 10001;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
 }
 
 .lightboxNav:hover {
-  background: rgba(201, 168, 76, 0.2);
-  border-color: var(--color-gold);
+  background: var(--color-gold);
+  color: var(--color-black);
 }
 
-.lightboxPrev {
-  left: 24px;
-}
-
-.lightboxNext {
-  right: 24px;
-}
+.lightboxPrev { left: 32px; }
+.lightboxNext { right: 32px; }
 
 .lightboxContent {
-  max-width: 80vw;
-  max-height: 85vh;
-  position: relative;
+  width: 90vw;
+  max-width: 1000px;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+}
+
+.lightboxContent:active {
+  cursor: grabbing;
 }
 
 .lightboxImage {
   width: 100%;
-  max-height: 85vh;
-  aspect-ratio: 4/3;
-  max-width: 900px;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  position: relative;
 }
 
 .lightboxPlaceholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-.lightboxLabel {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: 32px;
-  color: var(--color-white);
-}
-
-.lightboxCategory {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-gold-dim);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .lightboxCounter {
   position: absolute;
-  bottom: 24px;
+  bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Inter', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
+  font-weight: 400;
+  font-size: 13px;
   color: var(--color-white-muted);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+}
+
+/* Tablet view screen grids */
+@media (max-width: 1200px) {
+  .item { grid-column: span 6; }
 }
 
 @media (max-width: 1024px) {
-  .gallery {
-    padding: 100px 0;
-  }
-
-  .container {
-    padding: 0 40px;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .gallery { padding: 100px 0; }
+  .container { padding: 0 40px; }
+  .lightboxNav { display: none; } /* Hide buttons on mobile, swipe used instead */
 }
 
+/* Responsive Mobile Screen View (2 images side-by-side) */
 @media (max-width: 768px) {
-  .gallery {
-    padding: 80px 0;
+  .gallery { 
+    padding: 60px 0; 
   }
-
-  .container {
-    padding: 0 24px;
+  .container { 
+    padding: 0 16px; 
   }
-
-  .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
+  
+  /* Hada hoa li kaykhlihom ijiw 2 items hda 2 dima */
+  .grid { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 10px; 
   }
-
-  .lightboxContent {
-    max-width: 95vw;
+  .item { 
+    grid-column: span 1 !important; 
   }
-
-  .lightboxPrev {
-    left: 8px;
-    padding: 10px;
+  
+  .filters { 
+    gap: 6px; 
+    margin-bottom: 24px; 
   }
-
-  .lightboxNext {
-    right: 8px;
-    padding: 10px;
+  .filter { 
+    padding: 6px 14px; 
+    font-size: 10px; 
+  }
+  
+  /* Mobile Overlay fixes */
+  .itemOverlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%);
+  }
+  .itemDecoration { 
+    bottom: 10px; 
+    left: 10px; 
+  }
+  .itemTitle { 
+    font-size: 14px; 
+    opacity: 0.95; 
+  }
+  .itemContent { 
+    display: none; 
   }
 }

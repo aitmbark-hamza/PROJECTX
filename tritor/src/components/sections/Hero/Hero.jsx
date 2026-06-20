@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import Button from '../../ui/Button/Button';
 import styles from './Hero.module.css';
 
@@ -11,14 +12,15 @@ const bgImages = [
   { src: '/images/hero-3.jpg', overlay: 'rgba(8, 8, 8, 0.55)' },
 ];
 
-const titleLines = [
-  { text: "L'Art de", italic: true, gold: false },
-  { text: 'Sublimer', italic: false, gold: false },
-  { text: 'Vos Événements', italic: false, gold: true },
-];
-
-export default function Hero() {
+export default function Hero({ onBookingClick }) {
+  const { t } = useTranslation();
   const [bgIndex, setBgIndex] = useState(0);
+
+  const titleLines = [
+    { text: t('hero.title1'), italic: true, gold: false },
+    { text: t('hero.title2'), italic: false, gold: false },
+    { text: t('hero.title3'), italic: false, gold: true },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -103,7 +105,7 @@ export default function Hero() {
               key={i}
               className={`${styles.bgDot} ${i === bgIndex ? styles.bgDotActive : ''}`}
               onClick={() => setBgIndex(i)}
-              aria-label={`Image ${i + 1}`}
+              aria-label={t('hero.imageLabel', { index: i + 1 })}
             />
           ))}
         </div>
@@ -117,7 +119,7 @@ export default function Hero() {
           animate="visible"
         >
           <motion.span className={styles.eyebrow} variants={eyebrowVariants}>
-            CASABLANCA, MAROC
+            {t('hero.eyebrow')}
           </motion.span>
 
           <h1 className={styles.title}>
@@ -134,46 +136,21 @@ export default function Hero() {
           </h1>
 
           <motion.p className={styles.subtitle} variants={subtitleVariants}>
-            Service traiteur haut de gamme pour mariages, fiançailles, soirées privées, cocktails dînatoires et événements professionnels à Casablanca.
+            {t('hero.subtitle')}
           </motion.p>
           <motion.p className={styles.description} variants={subtitleVariants}>
-            La Table de la Cantine vous accompagne dans tous vos événements avec des prestations raffinées, des saveurs authentiques et un service personnalisé pensé dans les moindres détails.
+            {t('hero.description')}
           </motion.p>
 
           <motion.div className={styles.ctas} variants={ctaVariants}>
-            <Button variant="primary" href="#booking">
-              Demander un devis
+            <Button variant="primary" onClick={onBookingClick}>
+              {t('hero.ctaPrimary')}
             </Button>
             <Button variant="outline" href="#contact">
-              Nous contacter
+              {t('hero.ctaSecondary')}
             </Button>
           </motion.div>
         </motion.div>
-      </div>
-
-      <motion.div className={styles.scrollIndicator} variants={indicatorVariants}>
-        <span className={styles.scrollText}>SCROLL</span>
-        <div className={styles.scrollLine}>
-          <div className={styles.scrollDot} />
-        </div>
-      </motion.div>
-
-      <div className={styles.socialSide}>
-        <a href="https://instagram.com/mohcine_tazi" target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="Instagram">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-          </svg>
-        </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="LinkedIn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-            <rect x="2" y="9" width="4" height="12" />
-            <circle cx="4" cy="4" r="2" />
-          </svg>
-        </a>
-        <div className={styles.socialLine} />
       </div>
     </section>
   );

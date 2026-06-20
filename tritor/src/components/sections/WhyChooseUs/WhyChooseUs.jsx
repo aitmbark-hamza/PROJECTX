@@ -1,18 +1,14 @@
 import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
 import { slideFromRight, staggerContainer, cardVariants } from '../../../animations/variants';
 import styles from './WhyChooseUs.module.css';
 
-const reasons = [
-  'Produits frais sélectionnés avec soin',
-  'Service professionnel et ponctuel',
-  'Prestations adaptées à tous les événements',
-  'Accompagnement personnalisé',
-  'Qualité et excellence garanties',
-];
-
 export default function WhyChooseUs() {
+  const { t } = useTranslation();
+  const reasons = t('whyChooseUs.reasons', { returnObjects: true });
+
   return (
     <section className={styles.section} id="why-us">
       <motion.div
@@ -20,12 +16,12 @@ export default function WhyChooseUs() {
         variants={slideFromRight}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: false, amount: 0.2 }}
       >
         <ScrollReveal direction="up">
           <div className={styles.header}>
-            <span className="section-eyebrow">Pourquoi Nous Choisir ?</span>
-            <h2 className="section-title">La Qualité Avant Tout</h2>
+            <span className="section-eyebrow">{t('whyChooseUs.eyebrow')}</span>
+            <h2 className="section-title">{t('whyChooseUs.title')}</h2>
           </div>
         </ScrollReveal>
 
@@ -34,9 +30,9 @@ export default function WhyChooseUs() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.2 }}
         >
-          {reasons.map((reason, i) => (
+          {Array.isArray(reasons) && reasons.map((reason, i) => (
             <ScrollReveal key={reason} direction="up" delay={i * 0.1}>
               <motion.div
                 className={styles.card}

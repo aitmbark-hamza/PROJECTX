@@ -1,22 +1,27 @@
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
 import GoldLine from '../../ui/GoldLine/GoldLine';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+  const { t } = useTranslation();
+  const quickLinks = t('footer.links', { returnObjects: true });
+  const serviceLinks = t('footer.services', { returnObjects: true });
+  const quickHrefs = ['#hero', '#services', '#about', '#gallery', '#contact'];
+  const serviceHrefs = ['#services', '#services', '#services', '#services', '#services', '#services'];
+
   return (
     <footer className={styles.footer}>
       <div className={`${styles.container} section-container`}>
         <div className={styles.grid}>
           <ScrollReveal direction="up" delay={0}>
             <div className={styles.brand}>
-              <img src="/images/LOGO.png" alt="La Table de la Cantine" className={styles.logo} />
-              <p className={styles.tagline}>
-                La Table de la Cantine est spécialisée dans les prestations traiteur et l'organisation d'événements à Casablanca. Nous mettons notre passion et notre expertise au service de vos plus beaux moments.
-              </p>
+              <img src="/images/LOGO.png" alt={t('footer.logoAlt')} className={styles.logo} />
+              <p className={styles.tagline}>{t('footer.tagline')}</p>
               <div className={styles.social}>
-                <a href="https://instagram.com/mohcine_tazi" target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="Instagram">
+                <a href="https://instagram.com/mohcine_tazi" target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label={t('footer.instagram')}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -29,19 +34,19 @@ export default function Footer() {
 
           <ScrollReveal direction="up" delay={0.1}>
             <div className={styles.column}>
-              <h4 className={styles.columnTitle}>Contact</h4>
+              <h4 className={styles.columnTitle}>{t('footer.contactTitle')}</h4>
               <ul className={styles.contactList}>
                 <li className={styles.contactItem}>
                   <MapPin size={14} className={styles.contactIcon} />
-                  <span>1er Étage, 36 Bd du Nil, Casablanca 20250</span>
+                  <span>{t('footer.address')}</span>
                 </li>
                 <li className={styles.contactItem}>
                   <Phone size={14} className={styles.contactIcon} />
-                  <span>06 50 46 09 50</span>
+                  <span>{t('footer.phone')}</span>
                 </li>
                 <li className={styles.contactItem}>
                   <Mail size={14} className={styles.contactIcon} />
-                  <span>latabledor5@gmail.com</span>
+                  <span>{t('footer.email')}</span>
                 </li>
               </ul>
             </div>
@@ -49,27 +54,26 @@ export default function Footer() {
 
           <ScrollReveal direction="up" delay={0.2}>
             <div className={styles.column}>
-              <h4 className={styles.columnTitle}>Liens Rapides</h4>
+              <h4 className={styles.columnTitle}>{t('footer.linksTitle')}</h4>
               <ul className={styles.linkList}>
-                <li><a href="#hero" className={styles.footerLink}>Accueil</a></li>
-                <li><a href="#services" className={styles.footerLink}>Services</a></li>
-                <li><a href="#about" className={styles.footerLink}>À Propos</a></li>
-                <li><a href="#gallery" className={styles.footerLink}>Galerie</a></li>
-                <li><a href="#contact" className={styles.footerLink}>Contact</a></li>
+                {Array.isArray(quickLinks) && quickLinks.map((link, i) => (
+                  <li key={link}>
+                    <a href={quickHrefs[i] || '#hero'} className={styles.footerLink}>{link}</a>
+                  </li>
+                ))}
               </ul>
             </div>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.3}>
             <div className={styles.column}>
-              <h4 className={styles.columnTitle}>Services</h4>
+              <h4 className={styles.columnTitle}>{t('footer.servicesTitle')}</h4>
               <ul className={styles.linkList}>
-                <li><a href="#services" className={styles.footerLink}>Mariages</a></li>
-                <li><a href="#services" className={styles.footerLink}>Fiançailles</a></li>
-                <li><a href="#services" className={styles.footerLink}>Cocktails Dînatoires</a></li>
-                <li><a href="#services" className={styles.footerLink}>Buffets</a></li>
-                <li><a href="#services" className={styles.footerLink}>Organisation des Soirées</a></li>
-                <li><a href="#services" className={styles.footerLink}>Événements Privés et Professionnels</a></li>
+                {Array.isArray(serviceLinks) && serviceLinks.map((link, i) => (
+                  <li key={link}>
+                    <a href={serviceHrefs[i] || '#services'} className={styles.footerLink}>{link}</a>
+                  </li>
+                ))}
               </ul>
             </div>
           </ScrollReveal>
@@ -79,10 +83,10 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            &copy; {new Date().getFullYear()} La Table de la Cantine. Tous droits réservés.
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
           <p className={styles.credit}>
-            Fait avec passion à Casablanca
+            {t('footer.credit')}
           </p>
         </div>
       </div>

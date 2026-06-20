@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../../ui/LanguageSwitcher/LanguageSwitcher';
 import styles from './Navbar.module.css';
 
-const navLinks = [
-  { label: 'Accueil', href: '#hero' },
-  { label: 'Services', href: '#services' },
-  { label: 'À Propos', href: '#about' },
-  { label: 'Galerie', href: '#gallery' },
-  { label: 'Contact', href: '#contact' },
+const navLinkKeys = [
+  { key: 'home', href: '#hero' },
+  { key: 'services', href: '#services' },
+  { key: 'about', href: '#about' },
+  { key: 'gallery', href: '#gallery' },
+  { key: 'contact', href: '#contact' },
 ];
 
 export default function Navbar({ onBookingClick }) {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -52,6 +55,11 @@ export default function Navbar({ onBookingClick }) {
     }
   };
 
+  const navLinks = navLinkKeys.map((link) => ({
+    label: t(`navbar.links.${link.key}`),
+    href: link.href,
+  }));
+
   const staggerVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: (i) => ({
@@ -85,7 +93,7 @@ export default function Navbar({ onBookingClick }) {
             custom={0}
             variants={staggerVariants}
           >
-            <img src="/images/LOGO.png" alt="Tritor" className={styles.logoImg} />
+            <img src="/images/LOGO.png" alt="La Table de la Cantine" className={styles.logoImg} />
           </motion.a>
 
           <div className={styles.links}>
@@ -110,8 +118,11 @@ export default function Navbar({ onBookingClick }) {
               variants={staggerVariants}
               onClick={onBookingClick}
             >
-              Devis
+              {t('navbar.booking')}
             </motion.button>
+            <motion.div custom={navLinks.length + 2} variants={staggerVariants}>
+              <LanguageSwitcher />
+            </motion.div>
           </div>
 
           <motion.button
@@ -119,7 +130,7 @@ export default function Navbar({ onBookingClick }) {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             custom={navLinks.length + 1}
             variants={staggerVariants}
-            aria-label="Toggle menu"
+            aria-label={t('navbar.toggleMenu')}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
@@ -170,7 +181,7 @@ export default function Navbar({ onBookingClick }) {
                   exit="exit"
                   onClick={() => { onBookingClick(); }}
                 >
-                  Devis
+                  {t('navbar.booking')}
                 </motion.button>
               </div>
 
@@ -180,7 +191,10 @@ export default function Navbar({ onBookingClick }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
               >
-                <p className={styles.mobileTagline}>Des prestations traiteur de qualité à Casablanca</p>
+                <div className={styles.mobileLang}>
+                  <LanguageSwitcher />
+                </div>
+                <p className={styles.mobileTagline}>{t('navbar.tagline')}</p>
                 <div className={styles.mobileGoldLine} />
               </motion.div>
             </motion.div>

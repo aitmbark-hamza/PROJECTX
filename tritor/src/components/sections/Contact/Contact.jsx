@@ -4,8 +4,6 @@ import {
   MapPin,
   Phone,
   Mail,
-  Clock,
-  MessageCircle,
   Check,
   Loader2,
   User,
@@ -14,19 +12,16 @@ import {
   Send,
   Navigation,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
 import { slideFromLeft } from '../../../animations/variants';
 import styles from './Contact.module.css';
 
-const HEADLINE_WORDS = [
-  { text: 'TRAITEUR', variant: 'outline' },
-  { text: 'EXCELLENCE', variant: 'fill' },
-  { text: 'QUALITÉ', variant: 'outline' },
-];
-
 const MAP_QUERY = '36+Boulevard+du+Nil,+Casablanca+20250,+Maroc';
 
 export default function Contact() {
+  const { t } = useTranslation();
+  const headlineWords = t('contact.headlineWords', { returnObjects: true });
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitState, setSubmitState] = useState('idle');
 
@@ -58,13 +53,13 @@ export default function Contact() {
           <span />
         </div>
         <div className={styles.headlineWrap}>
-          {HEADLINE_WORDS.map((word, i) => (
+          {Array.isArray(headlineWords) && headlineWords.map((word, i) => (
             <motion.span
               key={word.text}
               className={`${styles.headlineWord} ${word.variant === 'fill' ? styles.headlineFill : styles.headlineOutline}`}
               initial={{ y: 60, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
             >
               {word.text}
@@ -78,16 +73,16 @@ export default function Contact() {
         variants={slideFromLeft}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: false, amount: 0.2 }}
       >
         <ScrollReveal direction="up">
           <div className={styles.header}>
             <div className={styles.eyebrowRow}>
               <span className={styles.dash} />
-              <span className="section-eyebrow">Contactez-nous</span>
+              <span className="section-eyebrow">{t('contact.eyebrow')}</span>
               <span className={styles.dash} />
             </div>
-            <h2 className="section-title">Parlons de Votre Projet</h2>
+            <h2 className="section-title">{t('contact.title')}</h2>
           </div>
         </ScrollReveal>
 
@@ -101,7 +96,7 @@ export default function Contact() {
             >
               <iframe
                 className={styles.mapFrame}
-                title="Localisation"
+                title={t('contact.mapTitle')}
                 src={`https://maps.google.com/maps?q=${MAP_QUERY}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -110,16 +105,17 @@ export default function Contact() {
                 className={styles.mapOverlayCard}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <span className={styles.mapOverlayName}>Notre Adresse</span>
+                <span className={styles.mapOverlayName}>{t('contact.addressTitle')}</span>
                 <span className={styles.mapOverlayAddress}>
-                  1er Étage, 36 Boulevard du Nil<br />
-                  Casablanca 20250, Maroc
+                  {t('contact.address').split('\n').map((line, i) => (
+                    <span key={i}>{line}{i === 0 ? <br /> : ''}</span>
+                  ))}
                 </span>
                 <span className={styles.mapOverlayLink}>
-                  <Navigation size={13} /> Voir sur Google Maps
+                  <Navigation size={13} /> {t('contact.viewOnMap')}
                 </span>
               </motion.div>
             </a>
@@ -127,16 +123,14 @@ export default function Contact() {
 
           <ScrollReveal direction="right" delay={0.15}>
             <form className={styles.form} onSubmit={handleSubmit}>
-              <h3 className={styles.formTitle}>
-                Demandez votre devis<br />personnalisé
-              </h3>
+              <h3 className={styles.formTitle}>{t('contact.formTitle')}</h3>
 
               <div className={styles.formFields}>
                 <div className={styles.inputGroup}>
                   <input
                     type="text"
                     className={styles.input}
-                    placeholder="Votre nom"
+                    placeholder={t('contact.placeholders.name')}
                     value={formData.name}
                     onChange={handleChange('name')}
                     required
@@ -148,7 +142,7 @@ export default function Contact() {
                   <input
                     type="email"
                     className={styles.input}
-                    placeholder="Votre adresse email"
+                    placeholder={t('contact.placeholders.email')}
                     value={formData.email}
                     onChange={handleChange('email')}
                     required
@@ -160,7 +154,7 @@ export default function Contact() {
                   <input
                     type="text"
                     className={styles.input}
-                    placeholder="Sujet"
+                    placeholder={t('contact.placeholders.subject')}
                     value={formData.subject}
                     onChange={handleChange('subject')}
                   />
@@ -171,7 +165,7 @@ export default function Contact() {
                   <textarea
                     className={styles.textarea}
                     rows={4}
-                    placeholder="Votre message..."
+                    placeholder={t('contact.placeholders.message')}
                     value={formData.message}
                     onChange={handleChange('message')}
                     required
@@ -192,22 +186,22 @@ export default function Contact() {
                 <AnimatePresence mode="wait">
                   {submitState === 'idle' && (
                     <motion.span key="idle" className={styles.submitIdleText} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                      Envoyer un Message <Send size={14} />
+                      {t('contact.submit')} <Send size={14} />
                     </motion.span>
                   )}
                   {submitState === 'loading' && (
                     <motion.span key="loading" className={styles.submitLoading} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                      <Loader2 size={18} className={styles.spinner} /> Envoi...
+                      <Loader2 size={18} className={styles.spinner} /> {t('contact.sending')}
                     </motion.span>
                   )}
                   {submitState === 'success' && (
                     <motion.span key="success" className={styles.submitSuccessText} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                      <Check size={18} /> Message envoyé !
+                      <Check size={18} /> {t('contact.sent')}
                     </motion.span>
                   )}
                   {submitState === 'error' && (
                     <motion.span key="error" className={styles.submitErrorText} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                      Veuillez réessayer
+                      {t('contact.error')}
                     </motion.span>
                   )}
                 </AnimatePresence>
