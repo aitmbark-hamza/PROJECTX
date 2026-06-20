@@ -511,3 +511,30 @@
     padding: 10px 16px;
   }
 }
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 0 40px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .statsRow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .trustBanner {
+    font-size: 11px;
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .card {
+    padding: 20px;
+  }
+}

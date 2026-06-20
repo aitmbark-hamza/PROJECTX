@@ -18,7 +18,7 @@ export default function Footer() {
         <div className={styles.grid}>
           <ScrollReveal direction="up" delay={0}>
             <div className={styles.brand}>
-              <img src="/images/LOGO.png" alt={t('footer.logoAlt')} className={styles.logo} />
+              <img src="/images/LOGO.webp" alt={t('footer.logoAlt')} className={styles.logo} width="70" height="64" />
               <p className={styles.tagline}>{t('footer.tagline')}</p>
               <div className={styles.social}>
                 <a href="https://instagram.com/mohcine_tazi" target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label={t('footer.instagram')}>

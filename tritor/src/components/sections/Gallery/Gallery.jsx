@@ -16,7 +16,7 @@ export default function Gallery() {
   const galleryItems = Array.isArray(rawItems)
     ? rawItems.map((item, i) => ({
         ...item,
-        src: `/images/gallery-${i + 1}.jpg`,
+        src: `/images/gallery-${i + 1}.webp`,
         aspect: aspects[i % aspects.length],
       }))
     : [];

@@ -482,3 +482,36 @@
     height: 48px;
   }
 }
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .headlineWrap {
+    padding: 0 16px;
+  }
+
+  .headlineSection {
+    padding: 40px 0 24px;
+  }
+
+  .form {
+    padding: 20px 16px;
+  }
+
+  .infoCard {
+    padding: 20px 16px;
+  }
+
+  .whatsappTooltip {
+    display: none;
+  }
+
+  .mapOverlayCard {
+    left: 10px;
+    right: 10px;
+    max-width: none;
+    top: 10px;
+  }
+}

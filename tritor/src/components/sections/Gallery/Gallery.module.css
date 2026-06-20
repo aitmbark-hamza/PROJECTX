@@ -291,3 +291,31 @@
     display: none; 
   }
 }
+
+@media (max-width: 480px) {
+  .gallery {
+    padding: 40px 0;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  .grid {
+    gap: 6px;
+  }
+
+  .filter {
+    padding: 4px 10px;
+    font-size: 9px;
+  }
+
+  .itemTitle {
+    font-size: 12px;
+  }
+
+  .itemDecoration {
+    bottom: 6px;
+    left: 6px;
+  }
+}

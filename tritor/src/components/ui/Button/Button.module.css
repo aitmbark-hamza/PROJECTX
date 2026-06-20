@@ -99,6 +99,30 @@
   font-size: 13px;
 }
 
+@media (max-width: 480px) {
+  .button {
+    padding: 12px 24px;
+    white-space: normal;
+  }
+
+  .sm {
+    padding: 10px 20px;
+  }
+
+  .md {
+    padding: 12px 24px;
+  }
+
+  .lg {
+    padding: 14px 32px;
+    font-size: 12px;
+  }
+
+  .ghost {
+    padding: 6px 12px;
+  }
+}
+
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }

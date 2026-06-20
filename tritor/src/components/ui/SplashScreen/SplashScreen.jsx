@@ -29,9 +29,10 @@ export default function SplashScreen() {
           <div className={styles.bgGradient} />
           <div className={styles.content}>
             <motion.img
-              src="/images/LOGO.png"
+              src="/images/LOGO.webp"
               alt="La Table de la Cantine"
               className={styles.logo}
+              width="95" height="87"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}

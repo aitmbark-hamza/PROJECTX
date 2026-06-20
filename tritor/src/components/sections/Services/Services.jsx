@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Heart, Diamond, Wine, UtensilsCrossed, Calendar, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +8,40 @@ import styles from './Services.module.css';
 
 const icons = [Sparkles, Heart, Diamond, Wine, UtensilsCrossed, Calendar];
 
+function LazyVideo() {
+  const ref = useRef(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      autoPlay
+      loop
+      muted
+      playsInline
+      className={styles.bgVideo}
+      src={loaded ? '/images/luxury-ambient.mp4' : undefined}
+      poster="/images/gallery-8.webp"
+    />
+  );
+}
+
 export default function Services() {
   const { t } = useTranslation();
   const services = t('services.items', { returnObjects: true });
@@ -14,14 +49,7 @@ export default function Services() {
   return (
     <section className={styles.services} id="services">
       <div className={styles.videoWrapper}>
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          className={styles.bgVideo}
-          src="/images/luxury-ambient.mp4" 
-        />
+        <LazyVideo />
         <div className={styles.videoOverlay} />
       </div>
 

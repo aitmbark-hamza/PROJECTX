@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -18,27 +18,37 @@ export default function Navbar({ onBookingClick }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const sectionIds = useRef(navLinkKeys.map(l => l.href.replace('#', '')));
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 80);
-
-      const sections = document.querySelectorAll('section[id]');
-      const scrollPos = window.scrollY + 200;
-
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-          setActiveSection(sectionId);
-        }
-      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = sectionIds.current;
+    const observers = [];
+
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        { rootMargin: '-40% 0px -55% 0px' }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   useEffect(() => {
@@ -93,7 +103,7 @@ export default function Navbar({ onBookingClick }) {
             custom={0}
             variants={staggerVariants}
           >
-            <img src="/images/LOGO.png" alt="La Table de la Cantine" className={styles.logoImg} />
+            <img src="/images/LOGO.webp" alt="La Table de la Cantine" className={styles.logoImg} width="120" height="110" />
           </motion.a>
 
           <div className={styles.links}>

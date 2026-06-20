@@ -285,3 +285,13 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  .overlay {
+    padding: 16px;
+  }
+
+  .modal {
+    padding: 24px 16px;
+  }
+}

@@ -225,3 +225,28 @@
     height: 28px;
   }
 }
+
+@media (max-width: 480px) {
+  .services {
+    padding: 60px 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 20px 16px;
+  }
+
+  .cardTitle {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .cardDesc {
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
