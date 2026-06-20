@@ -9,7 +9,7 @@ export default function Footer() {
   const { t } = useTranslation();
   const quickLinks = t('footer.links', { returnObjects: true });
   const serviceLinks = t('footer.services', { returnObjects: true });
-  const quickHrefs = ['#hero', '#services', '#about', '#gallery', '#contact'];
+  const quickHrefs = ['#hero', '#services', '#about', '#our-story', '#gallery', '#contact'];
   const serviceHrefs = ['#services', '#services', '#services', '#services', '#services', '#services'];
 
   return (

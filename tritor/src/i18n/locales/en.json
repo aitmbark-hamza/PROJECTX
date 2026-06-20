@@ -1,6 +1,6 @@
 {
   "navbar": {
-    "links": { "home": "Home", "services": "Services", "about": "About", "gallery": "Gallery", "contact": "Contact" },
+    "links": { "home": "Home", "services": "Services", "about": "About", "story": "Our Story", "gallery": "Gallery", "contact": "Contact" },
     "booking": "Quote",
     "tagline": "Quality catering in Casablanca",
     "toggleMenu": "Menu"
@@ -171,12 +171,44 @@
     "phone": "06 50 46 09 50",
     "email": "latabledor5@gmail.com",
     "linksTitle": "Links",
-    "links": ["Home", "Services", "About", "Gallery", "Contact"],
+    "links": ["Home", "Services", "About", "Our Story", "Gallery", "Contact"],
     "servicesTitle": "Services",
     "services": ["Weddings", "Engagements", "Cocktails", "Buffets", "Evenings", "Private Events"],
     "copyright": "© {{year}} La Table de la Cantine.",
     "credit": "Made with passion in Casablanca",
     "instagram": "Instagram"
+  },
+  "ourStory": {
+    "eyebrow": "Our Journey",
+    "title": "Our Story",
+    "subtitle": "Where the art of hospitality meets the discipline of management",
+    "timeline": [
+      {
+        "year": "2015",
+        "icon": "🌟",
+        "title": "The beginning of an exciting adventure",
+        "text": "In 2015, Mohcine TAZI brought to life an ambitious vision: to offer far more than just catering — to create unique experiences where every detail matters. Driven by a passion for gastronomy and a commitment to excellence, he turned every event into a carefully orchestrated masterpiece, blending refined flavors, elegance, and professionalism."
+      },
+      {
+        "year": "",
+        "icon": "✨",
+        "title": "A signature built on quality",
+        "text": "Over the years, La Table d'Or has established itself as a benchmark in event organization and catering services. Weddings, engagements, cocktails, buffets, and private receptions — each service is designed to deliver unforgettable memories."
+      },
+      {
+        "year": "",
+        "icon": "🎯",
+        "title": "Our commitment today",
+        "text": "We continue to serve our clients with the same passion that has driven us from day one: transforming every celebration into an exceptional moment through personalized service and meticulous attention to detail."
+      }
+    ],
+    "imageAlt": "Elegant reception — La Table de la Cantine",
+    "stats": [
+      { "label": "Years of experience", "value": 10, "suffix": "+" },
+      { "label": "Events delivered", "value": 500, "suffix": "+" },
+      { "label": "Happy clients", "value": 1000, "suffix": "+" },
+      { "label": "Passion & Excellence", "value": 100, "suffix": "%" }
+    ]
   },
   "languageSwitcher": {
     "label": "Language"

@@ -1,6 +1,6 @@
 {
   "navbar": {
-    "links": { "home": "Accueil", "services": "Services", "about": "À Propos", "gallery": "Galerie", "contact": "Contact" },
+    "links": { "home": "Accueil", "services": "Services", "about": "À Propos", "story": "Notre Histoire", "gallery": "Galerie", "contact": "Contact" },
     "booking": "Devis",
     "tagline": "Traiteur de qualité à Casablanca",
     "toggleMenu": "Menu"
@@ -171,12 +171,44 @@
     "phone": "06 50 46 09 50",
     "email": "latabledor5@gmail.com",
     "linksTitle": "Liens",
-    "links": ["Accueil", "Services", "À Propos", "Galerie", "Contact"],
+    "links": ["Accueil", "Services", "À Propos", "Notre Histoire", "Galerie", "Contact"],
     "servicesTitle": "Services",
     "services": ["Mariages", "Fiançailles", "Cocktails", "Buffets", "Soirées", "Événements Privés"],
     "copyright": "© {{year}} La Table de la Cantine.",
     "credit": "Fait avec passion à Casablanca",
     "instagram": "Instagram"
+  },
+  "ourStory": {
+    "eyebrow": "Notre Parcours",
+    "title": "Notre Histoire",
+    "subtitle": "Quand l'art de la réception rencontre la rigueur de la gestion",
+    "timeline": [
+      {
+        "year": "2015",
+        "icon": "🌟",
+        "title": "Le début d'une aventure passionnante",
+        "text": "En 2015, Mohcine TAZI a donné naissance à une vision ambitieuse : offrir bien plus qu'un simple service traiteur, mais créer des expériences uniques où chaque détail compte. Animé par la passion de la gastronomie et l'exigence de l'excellence, il a fait de chaque événement une œuvre soigneusement orchestrée, alliant saveurs raffinées, élégance et professionnalisme."
+      },
+      {
+        "year": "",
+        "icon": "✨",
+        "title": "Une signature fondée sur la qualité",
+        "text": "Au fil des années, La Table d'Or s'est imposée comme une référence dans l'organisation d'événements et le service traiteur. Mariages, fiançailles, cocktails, buffets ou réceptions privées, chaque prestation est pensée pour offrir des souvenirs inoubliables."
+      },
+      {
+        "year": "",
+        "icon": "🎯",
+        "title": "Notre engagement aujourd'hui",
+        "text": "Nous continuons à accompagner nos clients avec la même passion qui nous anime depuis le premier jour : transformer chaque célébration en un moment d'exception, grâce à un service personnalisé et une attention portée aux moindres détails."
+      }
+    ],
+    "imageAlt": "Réception élégante — La Table de la Cantine",
+    "stats": [
+      { "label": "Ans d'expérience", "value": 10, "suffix": "+" },
+      { "label": "Événements réalisés", "value": 500, "suffix": "+" },
+      { "label": "Clients satisfaits", "value": 1000, "suffix": "+" },
+      { "label": "Passion & Excellence", "value": 100, "suffix": "%" }
+    ]
   },
   "languageSwitcher": {
     "label": "Langue"

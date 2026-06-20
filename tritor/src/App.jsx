@@ -7,6 +7,7 @@ import SplashScreen from './components/ui/SplashScreen/SplashScreen';
 
 const Services = lazy(() => import('./components/sections/Services/Services'));
 const About = lazy(() => import('./components/sections/About/About'));
+const OurStory = lazy(() => import('./components/sections/OurStory/OurStory'));
 const WhyChooseUs = lazy(() => import('./components/sections/WhyChooseUs/WhyChooseUs'));
 const Gallery = lazy(() => import('./components/sections/Gallery/Gallery'));
 const GoogleReviews = lazy(() => import('./components/sections/GoogleReviews/GoogleReviews'));
@@ -29,6 +30,9 @@ export default function App() {
         </Suspense>
         <Suspense fallback={<div style={{ height: 300, background: '#080808' }} />}>
           <About />
+        </Suspense>
+        <Suspense fallback={<div style={{ height: 300, background: '#0D0D0D' }} />}>
+          <OurStory />
         </Suspense>
         <Suspense fallback={<div style={{ height: 300, background: '#0D0D0D' }} />}>
           <WhyChooseUs />
