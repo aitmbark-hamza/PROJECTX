@@ -20,6 +20,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  will-change: opacity, transform;
 }
 
 .bgOverlay {
@@ -131,6 +132,7 @@
   line-height: 1.05;
   color: var(--color-white);
   letter-spacing: -0.02em;
+  will-change: transform, opacity;
 }
 
 .titleItalic {

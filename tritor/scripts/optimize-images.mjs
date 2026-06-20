@@ -3,7 +3,7 @@ import { readdirSync, unlinkSync, existsSync, statSync, renameSync } from 'fs';
 import { join, parse } from 'path';
 
 const IMG_DIR = join(process.cwd(), 'public', 'images');
-const QUALITY = 80;
+const QUALITY = 65;
 
 function addThumbs(genSet, name) {
   const thumbPath = join(IMG_DIR, `${name}-thumb.webp`);
@@ -51,24 +51,30 @@ async function optimize() {
         .toFile(favPath);
       generatedWebP.add(favPath);
     } else {
-      await sharp(srcPath).webp({ quality: QUALITY, effort: 6 }).toFile(webpPath);
-
       if (file.startsWith('gallery-')) {
+        await sharp(srcPath)
+          .resize({ width: 1600, withoutEnlargement: true })
+          .webp({ quality: QUALITY, effort: 6 })
+          .toFile(webpPath);
         const thumbPath = join(IMG_DIR, `${name}-thumb.webp`);
         await sharp(srcPath)
           .resize({ width: 500, withoutEnlargement: true })
-          .webp({ quality: 75, effort: 6 })
+          .webp({ quality: 70, effort: 6 })
           .toFile(thumbPath);
         generatedWebP.add(thumbPath);
-      }
-
-      if (file.startsWith('hero-')) {
+      } else if (file.startsWith('hero-')) {
+        await sharp(srcPath)
+          .resize({ width: 1920, withoutEnlargement: true })
+          .webp({ quality: QUALITY, effort: 6 })
+          .toFile(webpPath);
         const thumbPath = join(IMG_DIR, `${name}-thumb.webp`);
         await sharp(srcPath)
           .resize({ width: 960, withoutEnlargement: true })
-          .webp({ quality: 75, effort: 6 })
+          .webp({ quality: 70, effort: 6 })
           .toFile(thumbPath);
         generatedWebP.add(thumbPath);
+      } else {
+        await sharp(srcPath).webp({ quality: QUALITY, effort: 6 }).toFile(webpPath);
       }
     }
 

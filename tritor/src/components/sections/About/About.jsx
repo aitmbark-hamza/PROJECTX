@@ -38,6 +38,8 @@ export default function About() {
                   alt={t('about.imageAlt')}
                   className={styles.actualImage}
                   loading="lazy"
+                  width="520"
+                  height="700"
                 />
                 <div className={styles.imageOverlay} />
               </div>
