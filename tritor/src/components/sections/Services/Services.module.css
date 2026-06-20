@@ -55,9 +55,9 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   justify-items: center;
 }
@@ -179,6 +179,7 @@
   }
 
   .grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
 
@@ -210,12 +211,11 @@
   }
 
   .grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 8px;
   }
 
   .card {
-    padding: 20px 16px;
+    padding: 20px 12px;
   }
 
   .cardTitle {
