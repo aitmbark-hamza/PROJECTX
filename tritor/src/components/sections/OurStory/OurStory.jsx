@@ -22,30 +22,12 @@ const storyTimeline = [
   },
   {
     id: 3,
-    number: '2022',
-    category: 'UN SAVOIR-FAIRE',
-    categoryHighlight: 'RECONNU',
-    title: 'Un rayonnement\nrégional',
-    description: "Fort de sa réputation, TAZI étend son savoir-faire à travers tout le Maroc. Chaque événement devient une signature, chaque prestation une référence dans l'art de la réception.",
-    image: '/images/gallery-1.webp',
-  },
-  {
-    id: 4,
     number: '2025',
     category: "L'EXCELLENCE",
     categoryHighlight: 'AU SERVICE',
     title: 'Des événements\ninoubliables',
     description: "Mariages, fiançailles, cocktails et grandes réceptions : TAZI continue de transformer chaque célébration en un moment unique, marqué par le professionnalisme et l'élégance.",
     image: '/images/gallery-4.webp',
-  },
-  {
-    id: 5,
-    number: '2026',
-    category: 'L\'AVENIR',
-    categoryHighlight: 'S\'ÉCRIT',
-    title: 'Une vision\ntoujours plus loin',
-    description: "En 2026, TAZI regarde vers l'avenir avec ambition. Nouveaux espaces, nouvelles collaborations, toujours plus d'exigence pour offrir le meilleur de la gastronomie événementielle.",
-    image: '/images/gallery-3.webp',
   },
 ];
 
