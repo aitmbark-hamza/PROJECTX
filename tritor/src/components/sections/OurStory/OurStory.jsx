@@ -9,7 +9,7 @@ const storyTimeline = [
     categoryHighlight: 'DE TAZI',
     title: 'Une aventure\ngastronomique',
     description: "En 2015, mon aventure a commencé. Moi, TAZI, j'ai lancé ce projet avec une vision claire : redéfinir l'art du service traiteur et de l'organisation d'événements. Tout a démarré d'une conviction profonde : chaque célébration, qu'elle soit un mariage intimiste ou une grande réception officielle, mérite d'être orchestrée avec le plus haut niveau de professionnalisme et de créativité.",
-    image: '/images/hero-1.webp',
+   
   },
   {
     id: 2,
@@ -27,17 +27,16 @@ const storyTimeline = [
     categoryHighlight: 'AU SERVICE',
     title: 'Des événements\ninoubliables',
     description: "Mariages, fiançailles, cocktails et grandes réceptions : TAZI continue de transformer chaque célébration en un moment unique, marqué par le professionnalisme et l'élégance. Quand l'art de la réception rencontre la rigueur de la gestion, chaque prestation devient une référence dans l'art de la gastronomie événementielle.",
-    image: '/images/gallery-4.webp',
+   
   },
 ];
 
-export default function OurStorySection() {
+export default function OurStory() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRefs = useRef([]);
   const wrapperRef = useRef(null);
 
-  // Intersection Observer for each section
   useEffect(() => {
     const observers = [];
 
@@ -67,10 +66,9 @@ export default function OurStorySection() {
     };
   }, []);
 
-  // Wrapper visibility observer for entrance animation
   useEffect(() => {
     if (!wrapperRef.current) return;
-    
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -90,12 +88,11 @@ export default function OurStorySection() {
   const progressHeight = ((activeIndex + 1) / storyTimeline.length) * 100;
 
   return (
-    <section 
+    <section
       ref={wrapperRef}
-      className={`${styles.wrapper} ${isVisible ? styles.visible : ''}`} 
+      className={`${styles.wrapper} ${isVisible ? styles.visible : ''}`}
       id="our-story"
     >
-      {/* Sticky Image Side */}
       <div className={styles.stickySide}>
         <div className={styles.stickyBg}>
           {storyTimeline.map((item, index) => (
@@ -132,7 +129,6 @@ export default function OurStorySection() {
         </div>
       </div>
 
-      {/* Scroll Content Side */}
       <div className={styles.scrollContent}>
         {storyTimeline.map((item, index) => (
           <div
