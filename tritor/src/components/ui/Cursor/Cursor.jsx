@@ -51,12 +51,23 @@ export default function Cursor() {
   return (
     <>
       <motion.div
-        className={`${styles.dot} ${isHovering ? styles.dotHover : ''}`}
+        className={styles.dot}
         style={{ left: cursorX, top: cursorY }}
+        animate={{
+          scale: isHovering ? 0.667 : 1,
+          background: isHovering ? 'var(--color-gold-light)' : 'var(--color-gold)',
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
       />
       <motion.div
-        className={`${styles.ring} ${isHovering ? styles.ringHover : ''}`}
+        className={styles.ring}
         style={{ left: ringXSpring, top: ringYSpring }}
+        animate={{
+          scale: isHovering ? 1.4 : 1,
+          borderColor: isHovering ? 'var(--color-gold)' : 'rgba(201, 168, 76, 0.4)',
+          background: isHovering ? 'rgba(201, 168, 76, 0.05)' : 'transparent',
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
       />
     </>
   );

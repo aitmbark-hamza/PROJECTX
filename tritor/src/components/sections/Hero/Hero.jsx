@@ -32,7 +32,7 @@ export default function Hero({ onBookingClick }) {
   const containerVariants = {
     hidden: {},
     visible: {
-      transition: { staggerChildren: 0.15, delayChildren: 0.4 },
+      transition: { staggerChildren: 0.12, delayChildren: 0.05 },
     },
   };
 
@@ -40,7 +40,7 @@ export default function Hero({ onBookingClick }) {
     hidden: { clipPath: 'inset(0 100% 0 0)' },
     visible: {
       clipPath: 'inset(0 0% 0 0)',
-      transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 },
+      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.05 },
     },
   };
 
@@ -50,8 +50,8 @@ export default function Hero({ onBookingClick }) {
       clipPath: 'inset(0 0 0 0)',
       y: 0,
       transition: {
-        duration: 0.7,
-        delay: 0.4 + i * 0.15,
+        duration: 0.6,
+        delay: 0.1 + i * 0.12,
         ease: [0.25, 0.46, 0.45, 0.94],
       },
     }),
@@ -62,7 +62,7 @@ export default function Hero({ onBookingClick }) {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] },
+      transition: { duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] },
     },
   };
 
@@ -71,7 +71,7 @@ export default function Hero({ onBookingClick }) {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] },
+      transition: { duration: 0.5, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] },
     },
   };
 
@@ -79,7 +79,7 @@ export default function Hero({ onBookingClick }) {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { delay: 1.4, duration: 0.6 },
+      transition: { delay: 0.3, duration: 0.4 },
     },
   };
 
