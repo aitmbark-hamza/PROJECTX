@@ -9,7 +9,7 @@ const storyTimeline = [
     categoryHighlight: 'HISTOIRE',
     title: 'Le premier pas\nde TAZI',
     description: "En 2015, TAZI a lancé son aventure avec une vision claire : réinventer l'art du service traiteur et l'organisation d'événements avec élégance et professionnalisme. Chaque réception mérite un niveau d'excellence exceptionnel.",
-    image: '/images/story1.webp',
+    image: '/images/hero-1.webp',
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const storyTimeline = [
     categoryHighlight: 'RÉCEPTION',
     title: 'Une identité\nforte',
     description: "Au fil des années, TAZI a développé une identité unique fondée sur la qualité, la créativité et le raffinement. Chaque détail est pensé pour offrir une expérience mémorable aux invités.",
-    image: '/images/story2.webp',
+    image: '/images/gallery-8.webp',
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const storyTimeline = [
     categoryHighlight: 'AU SERVICE',
     title: 'Des événements\ninoubliables',
     description: "Mariages, fiançailles, cocktails et grandes réceptions : TAZI continue de transformer chaque célébration en un moment unique, marqué par le professionnalisme et l'élégance.",
-    image: '/images/story3.webp',
+    image: '/images/gallery-4.webp',
   },
 ];
 
@@ -131,17 +131,6 @@ export default function OurStorySection() {
               <p className={`${styles.description} ${index === activeIndex ? styles.animate : ''}`}>
                 {item.description}
               </p>
-
-              <a
-                href="#contact"
-                className={`${styles.ctaLink} ${index === activeIndex ? styles.animate : ''}`}
-              >
-                <span>Découvrir notre histoire</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </a>
             </div>
 
             <div className={styles.sectionIndicator}>
