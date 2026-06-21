@@ -9,6 +9,7 @@ const storyTimeline = [
     categoryHighlight: 'DE TAZI',
     title: 'Une aventure\ngastronomique',
     description: "En 2015, mon aventure a commencé. Moi, TAZI, j'ai lancé ce projet avec une vision claire : redéfinir l'art du service traiteur et de l'organisation d'événements. Tout a démarré d'une conviction profonde : chaque célébration, qu'elle soit un mariage intimiste ou une grande réception officielle, mérite d'être orchestrée avec le plus haut niveau de professionnalisme et de créativité.",
+    image: '/images/hero-1.webp',
   },
   {
     id: 2,
@@ -17,21 +18,26 @@ const storyTimeline = [
     categoryHighlight: 'RÉCEPTION',
     title: 'Une identité\nforte',
     description: "Au fil des années, TAZI a développé une identité unique fondée sur la qualité, la créativité et le raffinement. Chaque détail est pensé pour offrir une expérience mémorable aux invités. Du raffinement des saveurs à l'élégance de la mise en scène, nous avons fait de la perfection notre signature.",
+    image: '/images/gallery-8.webp',
   },
   {
     id: 3,
-    number: '2025',
+    number: '2026',
     category: "L'EXCELLENCE",
     categoryHighlight: 'AU SERVICE',
     title: 'Des événements\ninoubliables',
     description: "Mariages, fiançailles, cocktails et grandes réceptions : TAZI continue de transformer chaque célébration en un moment unique, marqué par le professionnalisme et l'élégance. Quand l'art de la réception rencontre la rigueur de la gestion, chaque prestation devient une référence dans l'art de la gastronomie événementielle.",
+    image: '/images/gallery-4.webp',
   },
 ];
 
 export default function OurStorySection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRefs = useRef([]);
+  const wrapperRef = useRef(null);
 
+  // Intersection Observer for each section
   useEffect(() => {
     const observers = [];
 
@@ -61,10 +67,47 @@ export default function OurStorySection() {
     };
   }, []);
 
+  // Wrapper visibility observer for entrance animation
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const progressHeight = ((activeIndex + 1) / storyTimeline.length) * 100;
+
   return (
-    <section className={styles.wrapper} id="our-story">
-      <div className={styles.stickyImage}>
+    <section 
+      ref={wrapperRef}
+      className={`${styles.wrapper} ${isVisible ? styles.visible : ''}`} 
+      id="our-story"
+    >
+      {/* Sticky Image Side */}
+      <div className={styles.stickySide}>
         <div className={styles.stickyBg}>
+          {storyTimeline.map((item, index) => (
+            <div
+              key={item.id}
+              className={`${styles.bgImage} ${
+                index === activeIndex ? styles.bgImageActive : ''
+              } ${index < activeIndex ? styles.bgImageExit : ''}`}
+              style={{ backgroundImage: `url(${item.image})` }}
+            />
+          ))}
+          <div className={styles.bgOverlay} />
           <div className={styles.cornerTopLeft} />
           <div className={styles.cornerBottomRight} />
 
@@ -84,20 +127,21 @@ export default function OurStorySection() {
         <div className={styles.progressBar}>
           <div
             className={styles.progressFill}
-            style={{ height: `${((activeIndex + 1) / storyTimeline.length) * 100}%` }}
+            style={{ height: `${progressHeight}%` }}
           />
         </div>
       </div>
 
+      {/* Scroll Content Side */}
       <div className={styles.scrollContent}>
         {storyTimeline.map((item, index) => (
           <div
             key={item.id}
             ref={(el) => (sectionRefs.current[index] = el)}
-            className={styles.projectSection}
+            className={`${styles.storySection} ${index === activeIndex ? styles.active : ''}`}
           >
             <div className={styles.bgNumber}>
-              <span className={index === activeIndex ? styles.active : ''}>
+              <span className={index === activeIndex ? styles.bgNumberVisible : ''}>
                 {item.number}
               </span>
             </div>
@@ -113,19 +157,19 @@ export default function OurStorySection() {
                 </span>
               </div>
 
-              <h2 className={`${styles.title} ${index === activeIndex ? styles.animate : ''}`}>
+              <h2 className={styles.title}>
                 {item.title.split('\n').map((line, i) => (
                   <span
                     key={i}
-                    className={styles.titleLine}
-                    style={{ animationDelay: `${0.1 + i * 0.1}s` }}
+                    className={`${styles.titleLine} ${index === activeIndex ? styles.titleLineVisible : ''}`}
+                    style={{ transitionDelay: `${0.1 + i * 0.15}s` }}
                   >
                     {line}
                   </span>
                 ))}
               </h2>
 
-              <p className={`${styles.description} ${index === activeIndex ? styles.animate : ''}`}>
+              <p className={`${styles.description} ${index === activeIndex ? styles.descriptionVisible : ''}`}>
                 {item.description}
               </p>
             </div>

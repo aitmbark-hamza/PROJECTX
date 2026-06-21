@@ -1,10 +1,186 @@
+/* ============================================
+   TAZI - Our Story Section
+   CSS Module with New Animations & Responsive
+   ============================================ */
+
+/* ---- KEYFRAMES ---- */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.06;
+    filter: drop-shadow(0 0 0px rgba(201, 168, 76, 0));
+  }
+  50% {
+    opacity: 0.14;
+    filter: drop-shadow(0 0 30px rgba(201, 168, 76, 0.1));
+  }
+}
+
+@keyframes lineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 40px;
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) rotate(180deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(180deg);
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes revealText {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+@keyframes blurIn {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progressGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(201, 168, 76, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.6);
+  }
+}
+
+@keyframes cornerDraw {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============================================
+   MAIN WRAPPER
+   ============================================ */
 .wrapper {
   display: flex;
   width: 100%;
   position: relative;
+  background: var(--color-black, #080808);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.stickyImage {
+.wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   STICKY SIDE (Left Panel)
+   ============================================ */
+.stickySide {
   width: 50%;
   height: 100vh;
   position: sticky;
@@ -13,6 +189,7 @@
   overflow: hidden;
   background: var(--color-black, #080808);
   z-index: 10;
+  will-change: transform;
 }
 
 .stickyBg {
@@ -28,6 +205,38 @@
   border: 1px solid rgba(201, 168, 76, 0.06);
 }
 
+/* Background Images */
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+}
+
+.bgImageActive {
+  opacity: 1;
+}
+
+.bgImageExit {
+  opacity: 0;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(8, 8, 8, 0.7) 0%,
+    rgba(8, 8, 8, 0.4) 50%,
+    rgba(8, 8, 8, 0.6) 100%
+  );
+  z-index: 1;
+}
+
+/* Decorative Corners */
 .cornerTopLeft {
   position: absolute;
   top: 40px;
@@ -36,6 +245,8 @@
   height: 40px;
   border-top: 1px solid rgba(201, 168, 76, 0.15);
   border-left: 1px solid rgba(201, 168, 76, 0.15);
+  z-index: 3;
+  animation: cornerDraw 1s ease 0.5s both;
 }
 
 .cornerBottomRight {
@@ -46,13 +257,18 @@
   height: 40px;
   border-bottom: 1px solid rgba(201, 168, 76, 0.15);
   border-right: 1px solid rgba(201, 168, 76, 0.15);
+  z-index: 3;
+  animation: cornerDraw 1s ease 0.7s both;
 }
 
+/* Center Group */
 .centerGroup {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 32px;
+  position: relative;
+  z-index: 2;
 }
 
 .ornamentalLine {
@@ -60,6 +276,18 @@
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.25), transparent);
   position: relative;
+  overflow: hidden;
+}
+
+.ornamentalLine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.5), transparent);
+  animation: shimmer 3s infinite;
 }
 
 .ornamentalLine::before {
@@ -70,18 +298,28 @@
   transform: translate(-50%, -50%);
   font-size: 8px;
   color: rgba(201, 168, 76, 0.35);
+  z-index: 2;
 }
 
+/* Year Watermark */
 .yearWatermark {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(120px, 20vw, 280px);
+  font-size: clamp(100px, 18vw, 260px);
   font-weight: 700;
   color: rgba(201, 168, 76, 0.06);
   line-height: 1;
   user-select: none;
-  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: block;
+  animation: pulseGlow 4s ease-in-out infinite;
 }
 
+.yearAnimate {
+  animation: 
+    countUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+    pulseGlow 4s ease-in-out infinite 0.8s;
+}
+
+/* Brand Tagline */
 .brandTagline {
   position: absolute;
   bottom: 60px;
@@ -94,20 +332,25 @@
   text-transform: uppercase;
   color: rgba(201, 168, 76, 0.15);
   white-space: nowrap;
+  z-index: 2;
+  animation: fadeInUp 1s ease 0.5s both;
 }
 
+/* Vertical Label */
 .verticalLabel {
   position: absolute;
   right: 0;
   bottom: 80px;
   background: rgba(201, 168, 76, 0.08);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 20px 24px;
   writing-mode: vertical-rl;
   text-orientation: mixed;
   transform: rotate(180deg);
   z-index: 10;
   border-left: 1px solid rgba(201, 168, 76, 0.2);
+  animation: rotateIn 1s ease 0.3s both;
 }
 
 .verticalLabel span {
@@ -119,6 +362,7 @@
   color: var(--color-gold, #C9A84C);
 }
 
+/* Progress Bar */
 .progressBar {
   position: absolute;
   left: 30px;
@@ -135,16 +379,21 @@
 .progressFill {
   width: 100%;
   background: var(--color-gold, #C9A84C);
-  transition: height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   border-radius: 2px;
+  animation: progressGlow 2s ease-in-out infinite;
 }
 
+/* ============================================
+   SCROLL CONTENT (Right Side)
+   ============================================ */
 .scrollContent {
   width: 50%;
   position: relative;
 }
 
-.projectSection {
+/* Story Section */
+.storySection {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -152,16 +401,24 @@
   padding: 100px 80px;
   position: relative;
   background: var(--color-void, #0D0D0D);
+  transition: background 0.5s ease;
 }
 
-.projectSection::before {
+.storySection::before {
   content: '';
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at 0% 50%, rgba(201, 168, 76, 0.03) 0%, transparent 70%);
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 
+.storySection.active::before {
+  opacity: 1;
+}
+
+/* Background Number */
 .bgNumber {
   position: absolute;
   top: 60px;
@@ -174,37 +431,59 @@
   z-index: 0;
   overflow: hidden;
   height: 160px;
+  transition: all 0.6s ease;
 }
 
 .bgNumber span {
   display: block;
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(40px) scale(0.9);
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.bgNumber span.active {
-  opacity: 1;
-  transform: translateY(0);
+.bgNumberVisible {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
 }
 
+.storySection.active .bgNumber {
+  color: rgba(201, 168, 76, 0.12);
+}
+
+/* Content Area */
 .content {
   position: relative;
   z-index: 1;
   max-width: 520px;
 }
 
+/* Category */
 .category {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-bottom: 24px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.6s ease;
+}
+
+.storySection.active .category {
+  opacity: 1;
+  transform: translateX(0);
+  animation: slideFromLeft 0.6s ease 0.1s both;
 }
 
 .line {
-  width: 40px;
+  width: 0;
   height: 2px;
   background: var(--color-gold, #C9A84C);
+  transition: width 0.8s ease 0.2s;
+}
+
+.storySection.active .line {
+  width: 40px;
+  animation: lineGrow 0.8s ease 0.2s both;
 }
 
 .categoryText {
@@ -220,9 +499,10 @@
   color: var(--color-gold, #C9A84C);
 }
 
+/* Title */
 .title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 64px;
+  font-size: clamp(36px, 4.5vw, 64px);
   font-weight: 600;
   line-height: 1.05;
   margin: 0 0 28px 0;
@@ -235,42 +515,36 @@
 .titleLine {
   display: block;
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(50px);
+  transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.title.animate .titleLine {
-  animation: slideInUp 0.6s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+.titleLineVisible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
-@keyframes slideInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Description */
 .description {
   font-family: 'Inter', sans-serif;
-  font-size: 16px;
+  font-size: clamp(14px, 1.2vw, 16px);
   font-weight: 300;
   line-height: 1.8;
   color: rgba(245, 240, 232, 0.65);
   margin: 0;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(30px);
+  filter: blur(5px);
+  transition: all 0.8s ease 0.4s;
 }
 
-.description.animate {
-  animation: fadeInUp 0.6s ease 0.4s forwards;
+.descriptionVisible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  filter: blur(0) !important;
 }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Section Indicator */
 .sectionIndicator {
   position: absolute;
   bottom: 60px;
@@ -283,24 +557,33 @@
   font-weight: 400;
   color: rgba(245, 240, 232, 0.3);
   letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.6s;
+}
+
+.storySection.active .sectionIndicator {
+  opacity: 1;
+  animation: fadeInUp 0.6s ease 0.6s both;
 }
 
 .current {
   color: var(--color-gold, #C9A84C);
   font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .divider {
   color: rgba(201, 168, 76, 0.2);
 }
 
-@media (max-width: 1200px) {
-  .projectSection {
-    padding: 80px 50px;
-  }
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
 
-  .title {
-    font-size: 52px;
+/* Tablet Large */
+@media (max-width: 1200px) {
+  .storySection {
+    padding: 80px 50px;
   }
 
   .bgNumber {
@@ -310,12 +593,13 @@
   }
 }
 
+/* Tablet */
 @media (max-width: 992px) {
   .wrapper {
     flex-direction: column;
   }
 
-  .stickyImage {
+  .stickySide {
     width: 100%;
     height: 50vh;
     position: sticky;
@@ -326,9 +610,10 @@
     width: 100%;
   }
 
-  .projectSection {
+  .storySection {
     min-height: auto;
     padding: 80px 40px 60px;
+    min-height: 70vh;
   }
 
   .bgNumber {
@@ -336,10 +621,6 @@
     top: 30px;
     right: 30px;
     height: 100px;
-  }
-
-  .title {
-    font-size: 44px;
   }
 
   .verticalLabel {
@@ -356,15 +637,21 @@
     right: 40px;
     bottom: 30px;
   }
+
+  .yearWatermark {
+    font-size: clamp(80px, 25vw, 150px);
+  }
 }
 
+/* Mobile */
 @media (max-width: 576px) {
-  .projectSection {
+  .storySection {
     padding: 60px 24px 50px;
+    min-height: 80vh;
   }
 
   .title {
-    font-size: 34px;
+    font-size: 32px;
   }
 
   .description {
@@ -377,5 +664,111 @@
     top: 20px;
     right: 20px;
     height: 72px;
+  }
+
+  .category {
+    gap: 12px;
+  }
+
+  .sectionIndicator {
+    right: 24px;
+    bottom: 24px;
+    font-size: 12px;
+  }
+
+  .progressBar {
+    left: 16px;
+    height: 80px;
+  }
+
+  .cornerTopLeft,
+  .cornerBottomRight {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cornerTopLeft {
+    top: 20px;
+    left: 20px;
+  }
+
+  .cornerBottomRight {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .stickySide {
+    height: 45vh;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 375px) {
+  .storySection {
+    padding: 50px 20px 40px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .bgNumber {
+    font-size: 56px;
+    height: 56px;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY & PERFORMANCE
+   ============================================ */
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .yearWatermark,
+  .yearAnimate {
+    animation: none !important;
+  }
+
+  .progressFill {
+    animation: none !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .yearWatermark {
+    color: rgba(201, 168, 76, 0.3);
+  }
+
+  .description {
+    color: rgba(245, 240, 232, 0.9);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .stickySide {
+    position: relative;
+    height: auto;
+    width: 100%;
+  }
+
+  .storySection {
+    min-height: auto;
+    page-break-inside: avoid;
+  }
+
+  .progressBar,
+  .verticalLabel {
+    display: none;
   }
 }
