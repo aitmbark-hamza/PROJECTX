@@ -13,10 +13,11 @@ export default function Gallery() {
   const rawItems = t('gallery.items', { returnObjects: true });
   
   const aspects = ['3/4', '1/1', '4/3'];
+  const galleryFileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 15, 17, 18, 20];
   const galleryItems = Array.isArray(rawItems)
     ? rawItems.map((item, i) => ({
         ...item,
-        src: `/images/gallery-${i + 1}.webp`,
+        src: `/images/gallery-${galleryFileNumbers[i] || (i + 1)}.webp`,
         aspect: aspects[i % aspects.length],
       }))
     : [];
