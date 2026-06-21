@@ -66,7 +66,7 @@
 .card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(201, 168, 76, 0.12);
-  backdrop-filter: blur(12px); /* Let the blurred background video peak through subtly */
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 48px 36px;
   display: flex;
@@ -75,6 +75,7 @@
   gap: 20px;
   max-width: 360px;
   width: 100%;
+  min-height: 380px;
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
@@ -187,6 +188,7 @@
     max-width: 100%;
     padding: 24px 16px;
     gap: 10px;
+    min-height: 280px;
   }
 
   .cardTitle {
@@ -216,6 +218,7 @@
 
   .card {
     padding: 20px 12px;
+    min-height: 260px;
   }
 
   .cardTitle {
