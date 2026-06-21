@@ -336,6 +336,11 @@
     font-size: 44px;
   }
 
+  .cornerTopLeft,
+  .cornerBottomRight {
+    display: none;
+  }
+
   .sectionIndicator {
     right: 40px;
     bottom: 30px;
