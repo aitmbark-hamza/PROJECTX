@@ -65,7 +65,16 @@ export default function OurStorySection() {
     <section className={styles.wrapper} id="our-story">
       <div className={styles.stickyImage}>
         <div className={styles.stickyBg}>
-          <span className={styles.yearWatermark}>{storyTimeline[activeIndex].number}</span>
+          <div className={styles.cornerTopLeft} />
+          <div className={styles.cornerBottomRight} />
+
+          <div className={styles.centerGroup}>
+            <div className={styles.ornamentalLine} />
+            <span className={styles.yearWatermark}>{storyTimeline[activeIndex].number}</span>
+            <div className={styles.ornamentalLine} />
+          </div>
+
+          <span className={styles.brandTagline}>LA TABLE DE LA CANTINE</span>
         </div>
 
         <div className={styles.verticalLabel}>
