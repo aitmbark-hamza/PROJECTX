@@ -97,7 +97,7 @@ export default function OurStorySection() {
           <div
             key={item.id}
             ref={(el) => (sectionRefs.current[index] = el)}
-            className={styles.storySection}
+            className={styles.projectSection}
           >
             <div className={styles.bgNumber}>
               <span className={index === activeIndex ? styles.active : ''}>
@@ -106,7 +106,7 @@ export default function OurStorySection() {
             </div>
 
             <div className={styles.content}>
-              <div className={styles.storyCategory}>
+              <div className={styles.category}>
                 <span className={styles.line}></span>
                 <span className={styles.categoryText}>
                   {item.category}{' '}
@@ -134,7 +134,7 @@ export default function OurStorySection() {
 
               <a
                 href="#contact"
-                className={`${styles.discoverBtn} ${index === activeIndex ? styles.animate : ''}`}
+                className={`${styles.ctaLink} ${index === activeIndex ? styles.animate : ''}`}
               >
                 <span>Découvrir notre histoire</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
