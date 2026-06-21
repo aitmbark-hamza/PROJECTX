@@ -5,10 +5,10 @@ const storyTimeline = [
   {
     id: 1,
     number: '2015',
-    category: 'NOTRE',
-    categoryHighlight: 'HISTOIRE',
-    title: 'Le premier pas\nde TAZI',
-    description: "En 2015, TAZI a lancé son aventure avec une vision claire : réinventer l'art du service traiteur et l'organisation d'événements avec élégance et professionnalisme. Chaque réception mérite un niveau d'excellence exceptionnel.",
+    category: 'LE PREMIER PAS',
+    categoryHighlight: 'DE TAZI',
+    title: 'Une aventure\ngastronomique',
+    description: "En 2015, mon aventure a commencé. Moi, TAZI, j'ai lancé ce projet avec une vision claire : redéfinir l'art du service traiteur et de l'organisation d'événements. Tout a démarré d'une conviction profonde : chaque célébration, qu'elle soit un mariage intimiste ou une grande réception officielle, mérite d'être orchestrée avec le plus haut niveau de professionnalisme et de créativité.",
     image: '/images/hero-1.webp',
   },
   {
@@ -17,7 +17,7 @@ const storyTimeline = [
     category: "L'ART DE LA",
     categoryHighlight: 'RÉCEPTION',
     title: 'Une identité\nforte',
-    description: "Au fil des années, TAZI a développé une identité unique fondée sur la qualité, la créativité et le raffinement. Chaque détail est pensé pour offrir une expérience mémorable aux invités.",
+    description: "Au fil des années, TAZI a développé une identité unique fondée sur la qualité, la créativité et le raffinement. Chaque détail est pensé pour offrir une expérience mémorable aux invités. Du raffinement des saveurs à l'élégance de la mise en scène, nous avons fait de la perfection notre signature.",
     image: '/images/gallery-8.webp',
   },
   {
@@ -26,7 +26,7 @@ const storyTimeline = [
     category: "L'EXCELLENCE",
     categoryHighlight: 'AU SERVICE',
     title: 'Des événements\ninoubliables',
-    description: "Mariages, fiançailles, cocktails et grandes réceptions : TAZI continue de transformer chaque célébration en un moment unique, marqué par le professionnalisme et l'élégance.",
+    description: "Mariages, fiançailles, cocktails et grandes réceptions : TAZI continue de transformer chaque célébration en un moment unique, marqué par le professionnalisme et l'élégance. Quand l'art de la réception rencontre la rigueur de la gestion, chaque prestation devient une référence dans l'art de la gastronomie événementielle.",
     image: '/images/gallery-4.webp',
   },
 ];
