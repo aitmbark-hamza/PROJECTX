@@ -9,7 +9,6 @@ const storyTimeline = [
     categoryHighlight: 'DE TAZI',
     title: 'Une aventure\ngastronomique',
     description: "En 2015, mon aventure a commencé. Moi, TAZI, j'ai lancé ce projet avec une vision claire : redéfinir l'art du service traiteur et de l'organisation d'événements. Tout a démarré d'une conviction profonde : chaque célébration, qu'elle soit un mariage intimiste ou une grande réception officielle, mérite d'être orchestrée avec le plus haut niveau de professionnalisme et de créativité.",
-    image: '/images/hero-1.webp',
   },
   {
     id: 2,
@@ -18,7 +17,6 @@ const storyTimeline = [
     categoryHighlight: 'RÉCEPTION',
     title: 'Une identité\nforte',
     description: "Au fil des années, TAZI a développé une identité unique fondée sur la qualité, la créativité et le raffinement. Chaque détail est pensé pour offrir une expérience mémorable aux invités. Du raffinement des saveurs à l'élégance de la mise en scène, nous avons fait de la perfection notre signature.",
-    image: '/images/gallery-8.webp',
   },
   {
     id: 3,
@@ -27,7 +25,6 @@ const storyTimeline = [
     categoryHighlight: 'AU SERVICE',
     title: 'Des événements\ninoubliables',
     description: "Mariages, fiançailles, cocktails et grandes réceptions : TAZI continue de transformer chaque célébration en un moment unique, marqué par le professionnalisme et l'élégance. Quand l'art de la réception rencontre la rigueur de la gestion, chaque prestation devient une référence dans l'art de la gastronomie événementielle.",
-    image: '/images/gallery-4.webp',
   },
 ];
 
@@ -67,17 +64,8 @@ export default function OurStorySection() {
   return (
     <section className={styles.wrapper} id="our-story">
       <div className={styles.stickyImage}>
-        <div className={styles.imageWrapper}>
-          {storyTimeline.map((item, index) => (
-            <div
-              key={item.id}
-              className={`${styles.imageSlide} ${
-                index === activeIndex ? styles.active : ''
-              } ${index < activeIndex ? styles.slideUp : ''}`}
-            >
-              <img src={item.image} alt={item.title} loading="lazy" />
-            </div>
-          ))}
+        <div className={styles.stickyBg}>
+          <span className={styles.yearWatermark}>{storyTimeline[activeIndex].number}</span>
         </div>
 
         <div className={styles.verticalLabel}>
