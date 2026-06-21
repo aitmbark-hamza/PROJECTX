@@ -75,7 +75,7 @@ export default function OurStorySection() {
                 index === activeIndex ? styles.active : ''
               } ${index < activeIndex ? styles.slideUp : ''}`}
             >
-              <img src={item.image} alt={item.title} />
+              <img src={item.image} alt={item.title} loading="lazy" />
             </div>
           ))}
         </div>
