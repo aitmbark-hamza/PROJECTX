@@ -1,311 +1,307 @@
-.section {
-  position: relative;
-  background: var(--color-black, #080808);
-  padding: 140px 0;
-  overflow: hidden;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 80px;
-  position: relative;
-  z-index: 1;
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 80px;
-}
-
-.header h2 {
-  margin-bottom: 16px;
-}
-
-.subtitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 1.4;
-  color: var(--color-gold-dim, #8A6E32);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Same recurring motif used in Gallery — one quiet thread tying sections together */
-.headerRule {
-  width: 40px;
-  height: 1px;
-  background: var(--color-gold, #C9A84C);
-  margin: 28px auto 0;
-}
-
-.contentGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-  margin-bottom: 100px;
-}
-
-/* --- Timeline --- */
-.timeline {
-  position: relative;
-  padding-left: 40px;
-}
-
-.timelineLineTrack {
-  position: absolute;
-  top: 0;
-  left: 14px;
-  width: 1px;
-  height: 100%;
-  background: rgba(201, 168, 76, 0.1);
-}
-
-.timelineLine {
+.wrapper {
+  display: flex;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, var(--color-gold, #C9A84C), rgba(201, 168, 76, 0.15));
-  transform-origin: top;
-}
-
-.timelineCard {
   position: relative;
-  display: flex;
-  gap: 18px;
-  padding: 26px 28px;
-  margin-bottom: 28px;
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(201, 168, 76, 0.1);
-  border-radius: 12px;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.timelineCard::before {
-  content: '';
-  position: absolute;
-  left: -33px;
-  top: 32px;
-  width: 12px;
-  height: 12px;
-  background: var(--color-gold, #C9A84C);
-  border-radius: 50%;
-  border: 2px solid var(--color-black, #080808);
-  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.3);
-  z-index: 1;
+.stickyImage {
+  width: 50%;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background: #f5f5f5;
+  z-index: 10;
 }
 
-.timelineCard:hover {
-  border-color: rgba(201, 168, 76, 0.3);
-  background: rgba(255, 255, 255, 0.04);
-  transform: translateX(4px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-/* Icon now sits in its own badge instead of floating as bare text */
-.cardIconBadge {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid rgba(201, 168, 76, 0.3);
-  background: rgba(201, 168, 76, 0.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  transition: all 0.4s ease;
-}
-
-.timelineCard:hover .cardIconBadge {
-  border-color: var(--color-gold, #C9A84C);
-  background: rgba(201, 168, 76, 0.12);
-  transform: scale(1.06);
-}
-
-.cardBody {
-  flex: 1;
-  min-width: 0;
-}
-
-.cardYear {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-gold, #C9A84C);
-  display: block;
-  margin-bottom: 8px;
-}
-
-.cardTitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 1.3;
-  color: var(--color-white, #F5F0E8);
-  margin-bottom: 10px;
-}
-
-.cardText {
-  font-family: 'Inter', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.8;
-  color: rgba(245, 240, 232, 0.7);
-}
-
-/* --- Image --- */
 .imageWrapper {
   position: relative;
-}
-
-.imageContainer {
-  position: relative;
   width: 100%;
-  border-radius: 16px;
+  height: 100%;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-.image {
+.imageSlide {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  height: 100%;
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 1;
 }
 
-.imageContainer:hover .image {
-  transform: scale(1.04);
+.imageSlide.active {
+  transform: translateY(0);
+  z-index: 3;
 }
 
-.imageOverlay {
+.imageSlide.slideUp {
+  transform: translateY(-100%);
+  z-index: 2;
+}
+
+.imageSlide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.05);
+  transition: transform 0.8s ease;
+}
+
+.imageSlide.active img {
+  transform: scale(1);
+}
+
+.verticalLabel {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(8, 8, 8, 0.4), transparent 50%);
-  pointer-events: none;
+  right: 0;
+  bottom: 80px;
+  background: #ffffff;
+  padding: 16px 24px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  z-index: 10;
 }
 
-.imageFrame {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  width: 100px;
-  height: 100px;
-  border-top: 1px solid rgba(201, 168, 76, 0.25);
-  border-right: 1px solid rgba(201, 168, 76, 0.25);
-  pointer-events: none;
-}
-
-/* Second corner for symmetry — was missing before, made the frame feel lopsided */
-.imageFrameBottom {
-  position: absolute;
-  bottom: -12px;
-  left: -12px;
-  width: 100px;
-  height: 100px;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.25);
-  border-left: 1px solid rgba(201, 168, 76, 0.25);
-  pointer-events: none;
-}
-
-/* --- Stats: quiet divided row instead of boxed cards --- */
-.statsRow {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin-top: 80px;
-}
-
-.statItem {
-  position: relative;
-  text-align: center;
-  padding: 8px 16px 20px;
-  border-left: 1px solid rgba(201, 168, 76, 0.12);
-}
-
-.statItem:first-child {
-  border-left: none;
-}
-
-.statNumber {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 1;
-  color: var(--color-gold, #C9A84C);
-  margin-bottom: 8px;
-  transition: color 0.3s ease;
-}
-
-.statSuffix {
-  font-size: 28px;
-  color: var(--color-gold, #C9A84C);
-}
-
-.statLabel {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.1em;
+.verticalLabel span {
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.6);
+  color: #1a1a1a;
 }
 
-/* Underline grows in on hover instead of a static divider */
-.statUnderline {
+.progressBar {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 100px;
+  background: #FF6A00;
+  border-radius: 3px;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.progressFill {
   width: 100%;
-  height: 1px;
-  background: var(--color-gold, #C9A84C);
-  margin: 14px auto 0;
-  transform: scaleX(0.24);
-  transform-origin: center;
-  transition: transform 0.4s ease;
+  background: #ffffff;
+  transition: height 0.5s ease;
+  border-radius: 3px;
 }
 
-.statItem:hover .statUnderline {
-  transform: scaleX(0.44);
+.scrollContent {
+  width: 50%;
+  position: relative;
 }
 
-@media (max-width: 1024px) {
-  .section { padding: 100px 0; }
-  .container { padding: 0 40px; }
-  .contentGrid { grid-template-columns: 1fr; gap: 60px; }
-  .imageWrapper { order: -1; max-width: 600px; margin: 0 auto; }
-  .header { margin-bottom: 56px; }
-  .subtitle { font-size: 20px; }
+.storySection {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 100px;
+  position: relative;
+  background: #ffffff;
 }
 
-@media (max-width: 768px) {
-  .section { padding: 80px 0; }
-  .container { padding: 0 24px; }
-  .header { margin-bottom: 48px; }
-  .subtitle { font-size: 18px; }
-  .timeline { padding-left: 32px; }
-  .timelineCard { padding: 22px 18px; margin-bottom: 24px; gap: 14px; }
-  .cardIconBadge { width: 38px; height: 38px; font-size: 16px; }
-  .timelineCard::before { left: -26px; width: 10px; height: 10px; }
-  .cardTitle { font-size: 20px; }
-  .cardText { font-size: 13px; }
-  .statsRow { grid-template-columns: repeat(2, 1fr); }
-  .statItem:nth-child(3) { border-left: none; }
-  .statNumber { font-size: 36px; }
-  .imageFrame, .imageFrameBottom { display: none; }
+.bgNumber {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  font-size: 180px;
+  font-weight: 700;
+  color: #e5e5e5;
+  line-height: 1;
+  z-index: 0;
+  overflow: hidden;
+  height: 180px;
 }
 
-@media (max-width: 480px) {
-  .section { padding: 60px 0; }
-  .container { padding: 0 16px; }
-  .header { margin-bottom: 40px; }
-  .subtitle { font-size: 16px; }
-  .timeline { padding-left: 28px; }
-  .timelineCard { padding: 18px 14px; margin-bottom: 20px; }
-  .timelineCard::before { left: -23px; width: 8px; height: 8px; }
-  .cardTitle { font-size: 18px; }
-  .statNumber { font-size: 28px; }
-  .statLabel { font-size: 10px; }
-  .imageFrame, .imageFrameBottom { display: none; }
+.bgNumber span {
+  display: block;
+  opacity: 0.3;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.bgNumber span.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+}
+
+.storyCategory {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.line {
+  width: 40px;
+  height: 2px;
+  background: #d4a574;
+}
+
+.categoryText {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.highlight {
+  color: #5a9a8f;
+}
+
+.title {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.titleLine {
+  display: block;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.title.animate .titleLine {
+  animation: slideInUp 0.6s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666666;
+  margin: 0 0 40px 0;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.description.animate {
+  animation: fadeInUp 0.6s ease 0.4s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.discoverBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #1a1a1a;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 18px 32px;
+  font-size: 15px;
+  width: fit-content;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.discoverBtn.animate {
+  animation: fadeInUp 0.6s ease 0.5s forwards;
+}
+
+.discoverBtn:hover {
+  background: #333;
+}
+
+.sectionIndicator {
+  position: absolute;
+  bottom: 60px;
+  right: 100px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999999;
+}
+
+@media (max-width: 992px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .stickyImage {
+    width: 100%;
+    height: 50vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .scrollContent {
+    width: 100%;
+  }
+
+  .storySection {
+    min-height: 70vh;
+    padding: 60px 40px;
+  }
+
+  .bgNumber {
+    font-size: 100px;
+    top: 20px;
+    left: 20px;
+    height: 100px;
+  }
+
+  .title {
+    font-size: 42px;
+  }
+
+  .verticalLabel {
+    display: none;
+  }
+
+  .sectionIndicator {
+    right: 40px;
+    bottom: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .storySection {
+    padding: 50px 24px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .description {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .discoverBtn {
+    padding: 14px 24px;
+  }
 }

@@ -1,126 +1,156 @@
-import { motion, useInView } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { useRef, useState, useEffect } from 'react';
-import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
+import { useState, useEffect, useRef } from 'react';
 import styles from './OurStory.module.css';
 
-function AnimatedStat({ value, suffix, label }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const [count, setCount] = useState(0);
+const storyTimeline = [
+  {
+    id: 1,
+    number: '2015',
+    category: 'NOTRE',
+    categoryHighlight: 'HISTOIRE',
+    title: 'Le premier pas\nde TAZI',
+    description: "En 2015, TAZI a lancé son aventure avec une vision claire : réinventer l'art du service traiteur et l'organisation d'événements avec élégance et professionnalisme. Chaque réception mérite un niveau d'excellence exceptionnel.",
+    image: '/images/story1.webp',
+  },
+  {
+    id: 2,
+    number: '2018',
+    category: "L'ART DE LA",
+    categoryHighlight: 'RÉCEPTION',
+    title: 'Une identité\nforte',
+    description: "Au fil des années, TAZI a développé une identité unique fondée sur la qualité, la créativité et le raffinement. Chaque détail est pensé pour offrir une expérience mémorable aux invités.",
+    image: '/images/story2.webp',
+  },
+  {
+    id: 3,
+    number: '2025',
+    category: "L'EXCELLENCE",
+    categoryHighlight: 'AU SERVICE',
+    title: 'Des événements\ninoubliables',
+    description: "Mariages, fiançailles, cocktails et grandes réceptions : TAZI continue de transformer chaque célébration en un moment unique, marqué par le professionnalisme et l'élégance.",
+    image: '/images/story3.webp',
+  },
+];
+
+export default function OurStorySection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRefs = useRef([]);
 
   useEffect(() => {
-    if (!isInView) return;
-    let start = 0;
-    const duration = 2000;
-    const step = Math.ceil(value / (duration / 16));
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(start);
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [isInView, value]);
+    const observers = [];
+
+    sectionRefs.current.forEach((ref, index) => {
+      if (!ref) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveIndex(index);
+            }
+          });
+        },
+        {
+          threshold: 0.5,
+          rootMargin: '-25% 0px -25% 0px',
+        }
+      );
+
+      observer.observe(ref);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
 
   return (
-    <div ref={ref} className={styles.statItem}>
-      <div className={styles.statNumber}>
-        {count}
-        <span className={styles.statSuffix}>{suffix}</span>
-      </div>
-      <div className={styles.statLabel}>{label}</div>
-      <div className={styles.statUnderline} />
-    </div>
-  );
-}
-
-export default function OurStory() {
-  const { t } = useTranslation();
-  const timeline = t('ourStory.timeline', { returnObjects: true });
-  const stats = t('ourStory.stats', { returnObjects: true });
-
-  const timelineRef = useRef(null);
-  const timelineInView = useInView(timelineRef, { once: true, margin: '-100px' });
-
-  return (
-    <section className={styles.section} id="our-story">
-      <div className={styles.container}>
-        <ScrollReveal direction="up">
-          <div className={styles.header}>
-            <span className="section-eyebrow">{t('ourStory.eyebrow')}</span>
-            <h2 className="section-title">{t('ourStory.title')}</h2>
-            <p className={styles.subtitle}>{t('ourStory.subtitle')}</p>
-            <div className={styles.headerRule} />
-          </div>
-        </ScrollReveal>
-
-        <div className={styles.contentGrid}>
-          <ScrollReveal direction="left" className={styles.timeline}>
-            <div ref={timelineRef} className={styles.timelineLineTrack}>
-              <motion.div
-                className={styles.timelineLine}
-                initial={{ scaleY: 0 }}
-                animate={{ scaleY: timelineInView ? 1 : 0 }}
-                transition={{ duration: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-              />
-            </div>
-            {Array.isArray(timeline) && timeline.map((item, i) => (
-              <motion.div
-                key={i}
-                className={styles.timelineCard}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: i * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-              >
-                <span className={styles.cardIconBadge}>{item.icon}</span>
-                <div className={styles.cardBody}>
-                  {item.year && <span className={styles.cardYear}>{item.year}</span>}
-                  <h3 className={styles.cardTitle}>{item.title}</h3>
-                  <p className={styles.cardText}>{item.text}</p>
-                </div>
-              </motion.div>
-            ))}
-          </ScrollReveal>
-
-          <ScrollReveal direction="right" className={styles.imageWrapper}>
-            <motion.div
-              className={styles.imageContainer}
-              initial={{ opacity: 0, scale: 0.94 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+    <section className={styles.wrapper} id="our-story">
+      <div className={styles.stickyImage}>
+        <div className={styles.imageWrapper}>
+          {storyTimeline.map((item, index) => (
+            <div
+              key={item.id}
+              className={`${styles.imageSlide} ${
+                index === activeIndex ? styles.active : ''
+              } ${index < activeIndex ? styles.slideUp : ''}`}
             >
-              <img
-                src="/images/gallery-4.webp"
-                alt={t('ourStory.imageAlt')}
-                className={styles.image}
-                loading="lazy"
-                width="600"
-                height="750"
-              />
-              <div className={styles.imageOverlay} />
-              <div className={styles.imageFrame} />
-              <div className={styles.imageFrameBottom} />
-            </motion.div>
-          </ScrollReveal>
+              <img src={item.image} alt={item.title} />
+            </div>
+          ))}
         </div>
 
-        <motion.div
-          className={styles.statsRow}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-        >
-          {Array.isArray(stats) && stats.map((stat, i) => (
-            <AnimatedStat key={i} value={stat.value} suffix={stat.suffix} label={stat.label} />
-          ))}
-        </motion.div>
+        <div className={styles.verticalLabel}>
+          <span>NOTRE HISTOIRE</span>
+        </div>
+
+        <div className={styles.progressBar}>
+          <div
+            className={styles.progressFill}
+            style={{ height: `${((activeIndex + 1) / storyTimeline.length) * 100}%` }}
+          />
+        </div>
+      </div>
+
+      <div className={styles.scrollContent}>
+        {storyTimeline.map((item, index) => (
+          <div
+            key={item.id}
+            ref={(el) => (sectionRefs.current[index] = el)}
+            className={styles.storySection}
+          >
+            <div className={styles.bgNumber}>
+              <span className={index === activeIndex ? styles.active : ''}>
+                {item.number}
+              </span>
+            </div>
+
+            <div className={styles.content}>
+              <div className={styles.storyCategory}>
+                <span className={styles.line}></span>
+                <span className={styles.categoryText}>
+                  {item.category}{' '}
+                  <span className={styles.highlight}>
+                    {item.categoryHighlight}
+                  </span>
+                </span>
+              </div>
+
+              <h2 className={`${styles.title} ${index === activeIndex ? styles.animate : ''}`}>
+                {item.title.split('\n').map((line, i) => (
+                  <span
+                    key={i}
+                    className={styles.titleLine}
+                    style={{ animationDelay: `${0.1 + i * 0.1}s` }}
+                  >
+                    {line}
+                  </span>
+                ))}
+              </h2>
+
+              <p className={`${styles.description} ${index === activeIndex ? styles.animate : ''}`}>
+                {item.description}
+              </p>
+
+              <a
+                href="#contact"
+                className={`${styles.discoverBtn} ${index === activeIndex ? styles.animate : ''}`}
+              >
+                <span>Découvrir notre histoire</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+
+            <div className={styles.sectionIndicator}>
+              <span className={styles.current}>{String(index + 1).padStart(2, '0')}</span>
+              <span className={styles.divider}>/</span>
+              <span className={styles.total}>{String(storyTimeline.length).padStart(2, '0')}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
