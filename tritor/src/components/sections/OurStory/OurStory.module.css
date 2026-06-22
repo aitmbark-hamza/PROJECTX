@@ -142,6 +142,17 @@
   position: relative;
 }
 
+.sectionHeading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--color-gold, #C9A84C);
+  text-align: center;
+  padding: 80px 40px 0;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
 .storySection {
   min-height: 100vh;
   display: flex;

@@ -9,6 +9,7 @@ const storyTimeline = [
     categoryHighlight: 'DE TAZI',
     title: 'Une aventure\ngastronomique',
     description: "En 2015, mon aventure a commencé. Moi, TAZI, j'ai lancé ce projet avec une vision claire : redéfinir l'art du service traiteur et de l'organisation d'événements. Tout a démarré d'une conviction profonde : chaque célébration, qu'elle soit un mariage intimiste ou une grande réception officielle, mérite d'être orchestrée avec le plus haut niveau de professionnalisme et de créativité.",
+    img: '/images/story-1.jpg',
   },
   {
     id: 2,
@@ -113,6 +114,7 @@ export default function OurStory() {
       </div>
 
       <div className={styles.scrollContent}>
+        <h1 className={styles.sectionHeading}>Notre Histoire</h1>
         {storyTimeline.map((item, index) => (
           <div
             key={item.id}
