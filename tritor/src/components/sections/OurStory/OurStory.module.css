@@ -13,132 +13,8 @@
   transform: translateY(0);
 }
 
-.stickySide {
-  width: 50%;
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  background: var(--color-black, #080808);
-  z-index: 10;
-}
-
-.stickyBg {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(201, 168, 76, 0.06);
-  background:
-    radial-gradient(ellipse at 30% 50%, rgba(201, 168, 76, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 30%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(201, 168, 76, 0.04) 0%, transparent 40%);
-}
-
-.goldGlow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  height: 400px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.diagonalPattern {
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 40px,
-      rgba(201, 168, 76, 0.02) 40px,
-      rgba(201, 168, 76, 0.02) 41px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 40px,
-      rgba(201, 168, 76, 0.02) 40px,
-      rgba(201, 168, 76, 0.02) 41px
-    );
-  pointer-events: none;
-  z-index: 1;
-}
-
-.cornerTopLeft {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  width: 50px;
-  height: 50px;
-  border-top: 1px solid rgba(201, 168, 76, 0.2);
-  border-left: 1px solid rgba(201, 168, 76, 0.2);
-  z-index: 3;
-}
-
-.cornerBottomRight {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  width: 50px;
-  height: 50px;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-  border-right: 1px solid rgba(201, 168, 76, 0.2);
-  z-index: 3;
-}
-
-.centerGroup {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  position: relative;
-  z-index: 2;
-}
-
-.ornamentalLine {
-  width: 80px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.3), transparent);
-  position: relative;
-}
-
-.ornamentalDiamond {
-  width: 10px;
-  height: 10px;
-  border: 1px solid rgba(201, 168, 76, 0.3);
-  transform: rotate(45deg);
-}
-
-.progressBar {
-  position: absolute;
-  left: 30px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2px;
-  height: 120px;
-  background: rgba(201, 168, 76, 0.15);
-  border-radius: 2px;
-  z-index: 10;
-  overflow: hidden;
-}
-
-.progressFill {
-  width: 100%;
-  background: var(--color-gold, #C9A84C);
-  transition: height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border-radius: 2px;
-}
-
 .scrollContent {
-  width: 50%;
+  width: 100%;
   position: relative;
 }
 
@@ -320,17 +196,6 @@
     flex-direction: column;
   }
 
-  .stickySide {
-    width: 100%;
-    height: 50vh;
-    position: sticky;
-    top: 0;
-  }
-
-  .scrollContent {
-    width: 100%;
-  }
-
   .storySection {
     min-height: auto;
     padding: 80px 40px 60px;
@@ -345,11 +210,6 @@
 
   .title {
     font-size: 44px;
-  }
-
-  .cornerTopLeft,
-  .cornerBottomRight {
-    display: none;
   }
 
   .sectionIndicator {

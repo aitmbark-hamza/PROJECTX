@@ -83,36 +83,12 @@ export default function OurStory() {
     return () => observer.disconnect();
   }, []);
 
-  const progressHeight = ((activeIndex + 1) / storyTimeline.length) * 100;
-
   return (
     <section
       ref={wrapperRef}
       className={`${styles.wrapper} ${isVisible ? styles.visible : ''}`}
       id="our-story"
     >
-      <div className={styles.stickySide}>
-        <div className={styles.stickyBg}>
-          <div className={styles.goldGlow} />
-          <div className={styles.diagonalPattern} />
-          <div className={styles.cornerTopLeft} />
-          <div className={styles.cornerBottomRight} />
-
-          <div className={styles.centerGroup}>
-            <div className={styles.ornamentalLine} />
-            <div className={styles.ornamentalDiamond} />
-            <div className={styles.ornamentalLine} />
-          </div>
-        </div>
-
-        <div className={styles.progressBar}>
-          <div
-            className={styles.progressFill}
-            style={{ height: `${progressHeight}%` }}
-          />
-        </div>
-      </div>
-
       <div className={styles.scrollContent}>
         <h1 className={styles.sectionHeading}>Notre Histoire</h1>
         {storyTimeline.map((item, index) => (
