@@ -60,6 +60,18 @@
   background: rgba(201, 168, 76, 0.05);
 }
 
+.socialInstagram:hover {
+  border-color: #E4405F !important;
+  color: #E4405F !important;
+  background: rgba(228, 64, 95, 0.1) !important;
+}
+
+.socialWhatsapp:hover {
+  border-color: #25D366 !important;
+  color: #25D366 !important;
+  background: rgba(37, 211, 102, 0.1) !important;
+}
+
 .column {
   display: flex;
   flex-direction: column;
