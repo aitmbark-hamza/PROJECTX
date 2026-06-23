@@ -59,7 +59,7 @@ export default function Contact() {
               className={`${styles.headlineWord} ${word.variant === 'fill' ? styles.headlineFill : styles.headlineOutline}`}
               initial={{ y: 60, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: false, amount: 0.2 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
             >
               {word.text}
@@ -73,7 +73,7 @@ export default function Contact() {
         variants={slideFromLeft}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <ScrollReveal direction="up">
           <div className={styles.header}>
@@ -85,11 +85,10 @@ export default function Contact() {
             <h2 className="section-title">{t('contact.title')}</h2>
           </div>
         </ScrollReveal>
-
         <div className={styles.mapFormGrid}>
           <ScrollReveal direction="left" delay={0.1}>
             <a
-              href="https://share.google/VOBqqpUPax1H4q0Xz"
+              href="https://maps.app.goo.gl/FKzHbuFLAAgJMnP7A"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.mapWrap}
@@ -105,7 +104,7 @@ export default function Contact() {
                 className={styles.mapOverlayCard}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <span className={styles.mapOverlayName}>{t('contact.addressTitle')}</span>

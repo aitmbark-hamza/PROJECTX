@@ -42,11 +42,11 @@ export default function Footer() {
                 </li>
                 <li className={styles.contactItem}>
                   <Phone size={14} className={styles.contactIcon} />
-                  <span>{t('footer.phone')}</span>
+                  <a href={t('footer.whatsapp')} target="_blank" rel="noopener noreferrer" className={styles.contactLink}>{t('footer.phone')}</a>
                 </li>
                 <li className={styles.contactItem}>
                   <Mail size={14} className={styles.contactIcon} />
-                  <span>{t('footer.email')}</span>
+                  <a href={`mailto:${t('footer.email')}`} className={styles.contactLink}>{t('footer.email')}</a>
                 </li>
               </ul>
             </div>
