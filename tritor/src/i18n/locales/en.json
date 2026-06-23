@@ -175,35 +175,32 @@
     "instagram": "Instagram"
   },
   "ourStory": {
-    "eyebrow": "Our Journey",
-    "title": "Our Story",
-    "subtitle": "Where the art of hospitality meets the discipline of management",
+    "heading": "Our Story",
     "timeline": [
       {
-        "year": "2015",
-        "icon": "🌟",
-        "title": "The beginning of an exciting adventure",
-        "text": "In 2015, Mohcine TAZI brought to life an ambitious vision: to offer far more than just catering — to create unique experiences where every detail matters. Driven by a passion for gastronomy and a commitment to excellence, he turned every event into a carefully orchestrated masterpiece, blending refined flavors, elegance, and professionalism."
+        "id": 1,
+        "number": "2015",
+        "category": "THE FIRST",
+        "categoryHighlight": "STEP",
+        "title": "A culinary\nadventure",
+        "description": "In 2015, my adventure began. I, TAZI, launched this project with a clear vision: to redefine the art of catering and event organization. It all started from a deep conviction: every celebration, whether an intimate wedding or a grand official reception, deserves to be orchestrated with the highest level of professionalism and creativity."
       },
       {
-        "year": "",
-        "icon": "✨",
-        "title": "A signature built on quality",
-        "text": "Over the years, La Table d'Or has established itself as a benchmark in event organization and catering services. Weddings, engagements, cocktails, buffets, and private receptions — each service is designed to deliver unforgettable memories."
+        "id": 2,
+        "number": "2018",
+        "category": "THE ART OF",
+        "categoryHighlight": "HOSPITALITY",
+        "title": "A strong\nidentity",
+        "description": "Over the years, TAZI has developed a unique identity built on quality, creativity, and refinement. Every detail is designed to offer guests a memorable experience. From the refinement of flavors to the elegance of presentation, we have made perfection our signature."
       },
       {
-        "year": "",
-        "icon": "🎯",
-        "title": "Our commitment today",
-        "text": "We continue to serve our clients with the same passion that has driven us from day one: transforming every celebration into an exceptional moment through personalized service and meticulous attention to detail."
+        "id": 3,
+        "number": "2026",
+        "category": "EXCELLENCE",
+        "categoryHighlight": "IN SERVICE",
+        "title": "Unforgettable\nevents",
+        "description": "Weddings, engagements, cocktails, and grand receptions: TAZI continues to transform every celebration into a unique moment, marked by professionalism and elegance. Where the art of hospitality meets the rigor of management, every service becomes a benchmark in event gastronomy."
       }
-    ],
-    "imageAlt": "Elegant reception — La Table de la Cantine",
-    "stats": [
-      { "label": "Years of experience", "value": 10, "suffix": "+" },
-      { "label": "Events delivered", "value": 500, "suffix": "+" },
-      { "label": "Happy clients", "value": 1000, "suffix": "+" },
-      { "label": "Passion & Excellence", "value": 100, "suffix": "%" }
     ]
   },
   "languageSwitcher": {
