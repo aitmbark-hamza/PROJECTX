@@ -81,14 +81,7 @@ export default function Footer() {
 
         <GoldLine width="100%" height="1px" className={styles.divider} />
 
-        <div className={styles.bottom}>
-          <p className={styles.copyright}>
-            {t('footer.copyright', { year: new Date().getFullYear() })}
-          </p>
-          <p className={styles.credit}>
-            {t('footer.credit')}
-          </p>
-        </div>
+       
       </div>
     </footer>
   );

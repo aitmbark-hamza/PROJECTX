@@ -31,16 +31,15 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitState('loading');
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const { name, email, subject, message } = formData;
 
-    if (Math.random() > 0.1) {
-      setSubmitState('success');
-      setTimeout(() => { setSubmitState('idle'); setFormData({ name: '', email: '', subject: '', message: '' }); }, 3000);
-    } else {
-      setSubmitState('error');
-      setTimeout(() => setSubmitState('idle'), 3000);
-    }
+    const text = `*Nouveau message - La Table de la Cantine*%0A%0A*Nom :* ${encodeURIComponent(name)}%0A*Email :* ${encodeURIComponent(email)}%0A*Sujet :* ${encodeURIComponent(subject)}%0A*Message :* ${encodeURIComponent(message)}`;
+
+    setSubmitState('loading');
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    window.open(`https://wa.me/212650460950?text=${text}`, '_blank');
+    setSubmitState('idle');
   };
 
   return (

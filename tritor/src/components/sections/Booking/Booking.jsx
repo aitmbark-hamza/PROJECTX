@@ -61,16 +61,15 @@ export default function Booking({ isOpen, onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitState('loading');
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const { name, email, phone, eventType, date, guests, budget, message } = formData;
 
-    if (Math.random() > 0.1) {
-      setSubmitState('success');
-      setTimeout(() => { setSubmitState('idle'); onClose(); }, 2000);
-    } else {
-      setSubmitState('error');
-      setTimeout(() => setSubmitState('idle'), 3000);
-    }
+    const text = `*Nouvelle demande de devis - La Table de la Cantine*%0A%0A*Nom :* ${encodeURIComponent(name)}%0A*Email :* ${encodeURIComponent(email)}%0A*Téléphone :* ${encodeURIComponent(phone)}%0A*Type d'événement :* ${encodeURIComponent(eventType)}%0A*Date :* ${encodeURIComponent(date)}%0A*Invites :* ${guests}%0A*Budget :* ${budget} MAD%0A*Message :* ${encodeURIComponent(message)}`;
+
+    setSubmitState('loading');
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    window.open(`https://wa.me/212650460950?text=${text}`, '_blank');
+    setSubmitState('idle');
   };
 
   const formatBudget = (val) => {
