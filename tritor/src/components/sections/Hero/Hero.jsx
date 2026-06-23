@@ -111,6 +111,10 @@ export default function Hero({ onBookingClick }) {
         </div>
       </div>
 
+      <div className={styles.logoWatermark}>
+        <img src="/images/LOGO.webp" alt="" aria-hidden="true" />
+      </div>
+
       <div className={styles.content}>
         <motion.div
           className={styles.inner}
