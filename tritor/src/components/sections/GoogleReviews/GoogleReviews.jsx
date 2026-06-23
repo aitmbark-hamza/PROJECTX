@@ -223,7 +223,7 @@ export default function GoogleReviews() {
         </motion.div>
 
         <motion.a
-          href="https://share.google/VOBqqpUPax1H4q0Xz"
+          href="https://maps.app.goo.gl/FKzHbuFLAAgJMnP7A"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.googleBtn}
