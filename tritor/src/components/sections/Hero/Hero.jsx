@@ -8,8 +8,8 @@ import styles from './Hero.module.css';
 // the photo so the title/eyebrow/CTAs stay readable on top of it.
 const bgImages = [
   { src: '/images/hero-1.webp', overlay: 'rgba(10, 9, 6, 0.55)' },
-  { src: '/images/hero-2.webp', overlay: 'rgba(12, 10, 6, 0.6)' },
-  { src: '/images/hero-3.webp', overlay: 'rgba(8, 8, 8, 0.55)' },
+  { src: '/images/gallery-30.jpg', overlay: 'rgba(12, 10, 6, 0.6)' },
+  { src: '/images/gallery-28.webp', overlay: 'rgba(8, 8, 8, 0.55)' },
 ];
 
 export default function Hero({ onBookingClick }) {
