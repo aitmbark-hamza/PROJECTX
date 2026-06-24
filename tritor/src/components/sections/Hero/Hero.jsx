@@ -17,7 +17,7 @@ export default function Hero({ onBookingClick }) {
   const [bgIndex, setBgIndex] = useState(0);
 
   const titleLines = [
-    { text: t('hero.title1'), italic: true, gold: false },
+    { text: t('hero.title1'), italic: false, gold: false },
     { text: t('hero.title2'), italic: false, gold: false },
     { text: t('hero.title3'), italic: false, gold: true },
   ];
