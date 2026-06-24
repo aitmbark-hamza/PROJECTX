@@ -44,7 +44,7 @@ export default function SplashScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              LA TABLE D'OR
+              LA TABLE DE LA CANTINE
             </motion.h1>
 
             <motion.p
@@ -53,16 +53,7 @@ export default function SplashScreen() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              Bienvenue
-            </motion.p>
-
-            <motion.p
-              className={styles.description}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-            >
-              Organisation des mariages, buffets et événements.
+              Traiteur & Organisation d'Événements
             </motion.p>
 
             <motion.div
