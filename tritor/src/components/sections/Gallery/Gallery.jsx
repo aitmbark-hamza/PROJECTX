@@ -13,7 +13,7 @@ export default function Gallery() {
   const rawItems = t('gallery.items', { returnObjects: true });
   
   const aspects = ['4/3'];
-  const galleryFileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 15, 17, 18, 20, 26, 27, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55];
+  const galleryFileNumbers = [4, 5, 6, 10, 14, 15, 17, 18, 25, 26, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55];
   const galleryItems = Array.isArray(rawItems)
     ? rawItems.map((item, i) => ({
         ...item,
