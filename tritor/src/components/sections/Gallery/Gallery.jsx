@@ -4,32 +4,27 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
 import { slideFromLeft } from '../../../animations/variants';
+import galleryData, { galleryCategories, categoryKeys } from './galleryData';
 import styles from './Gallery.module.css';
 
 export default function Gallery() {
-  const { t } = useTranslation();
-  const categories = t('gallery.categories', { returnObjects: true });
-  const defaultCat = Array.isArray(categories) ? categories[0] : 'Tout';
-  const rawItems = t('gallery.items', { returnObjects: true });
-  
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+  const categories = galleryCategories[lang] || galleryCategories.fr;
   const aspects = ['4/3'];
-  const galleryFileNumbers = [4, 5, 6, 10, 14, 15, 17, 18, 25, 26, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55];
-  const galleryItems = Array.isArray(rawItems)
-    ? rawItems.map((item, i) => ({
-        ...item,
-        src: `/images/gallery-${galleryFileNumbers[i] || (i + 1)}.webp`,
-        aspect: aspects[i % aspects.length],
-      }))
-    : [];
+  const galleryItems = galleryData.map((item) => ({
+    category: item.category,
+    title: item.title[lang] || item.title.fr,
+    src: `/images/gallery-${item.file}.webp`,
+    aspect: aspects[0],
+  }));
 
-  const [activeCategory, setActiveCategory] = useState(defaultCat);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  const filteredItems = Array.isArray(galleryItems)
-    ? activeCategory === defaultCat
-      ? galleryItems
-      : galleryItems.filter((item) => item.category === activeCategory)
-    : [];
+  const filteredItems = galleryItems.filter(
+    (item) => item.category === categoryKeys[activeIndex]
+  );
 
   const openLightbox = (index) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
@@ -89,11 +84,11 @@ export default function Gallery() {
 
         <ScrollReveal direction="up" delay={0.1}>
           <div className={styles.filters}>
-            {Array.isArray(categories) && categories.map((cat) => (
+            {Array.isArray(categories) && categories.map((cat, idx) => (
               <button
                 key={cat}
-                className={`${styles.filter} ${activeCategory === cat ? styles.filterActive : ''}`}
-                onClick={() => setActiveCategory(cat)}
+                className={`${styles.filter} ${activeIndex === idx ? styles.filterActive : ''}`}
+                onClick={() => setActiveIndex(idx)}
               >
                 {cat}
               </button>
