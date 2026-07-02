@@ -13,9 +13,10 @@ export default function Gallery() {
   const categories = galleryCategories[lang] || galleryCategories.fr;
   const aspects = ['4/3'];
   const galleryItems = galleryData.map((item) => ({
+    id: item.id,
     category: item.category,
     title: item.title[lang] || item.title.fr,
-    src: `/images/gallery-${item.file}.webp`,
+    src: item.image,
     aspect: aspects[0],
   }));
 
@@ -100,11 +101,10 @@ export default function Gallery() {
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item, i) => (
               <motion.div
-                key={item.title + i}
+                key={item.id}
                 className={styles.item}
                 style={{
                   aspectRatio: item.aspect || '1/1',
-                  backgroundImage: `url(${item.src})`,
                 }}
                 layout
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -113,6 +113,7 @@ export default function Gallery() {
                 transition={{ duration: 0.4 }}
                 onClick={() => openLightbox(i)}
               >
+                <img src={item.src} alt={item.title} loading="lazy" />
                 <div className={styles.itemOverlay}>
                   <div className={styles.itemContent}>
                     <span className={styles.itemCategory}>{item.category}</span>

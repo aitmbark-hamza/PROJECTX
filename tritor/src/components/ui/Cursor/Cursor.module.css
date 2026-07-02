@@ -9,6 +9,11 @@
   mix-blend-mode: difference;
 }
 
+/* Hide the small cursor dot when not wanted */
+.dot {
+  display: none !important;
+}
+
 .ring {
   position: fixed;
   width: 40px;
@@ -18,3 +23,4 @@
   pointer-events: none;
   z-index: 99998;
 }
+

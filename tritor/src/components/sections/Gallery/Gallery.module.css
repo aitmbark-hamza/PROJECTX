@@ -46,11 +46,19 @@
   border: 1px solid rgba(201, 168, 76, 0.15);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  outline: none;
 }
 
 .filter:hover {
   color: var(--color-gold);
   border-color: rgba(201, 168, 76, 0.4);
+}
+
+.filter:focus {
+  color: var(--color-gold);
+  background: rgba(201, 168, 76, 0.1);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.2);
 }
 
 .filterActive {
@@ -75,6 +83,13 @@
   background-size: cover;
   background-position: center;
   grid-column: span 4;
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* Hover effects (Only for desktop) */
