@@ -1,7 +1,7 @@
 // Array of image filenames in the public/images folder
 const platFilenames = [
-  'plat 1.jpg', 'plat 2.jpg', 'plat 3.jpg', 'plat 4.jpg', 'plat 5.jpg',
-  'plat 6.jpg', 'plat 7.jpg', 'plat 8.jpg', 'plat 9.jpg', 'plat 10.jpg',
+  'plat1.jpg', 'plat 2.jpg', 'plat 3.jpg', 'plat4.jpg', 'plat 5.jpg',
+  'plat 6.jpg', 'plat 7.jpg', 'plat8.jpg', 'plat 9.jpg', 'plat 10.jpg',
   'plat 11.jpg', 'plat 12.jpg', 'plat 13.jpg', 'plat 14.jpg', 'plat 15.jpg',
   'plat 16.jpg', 'plat 17.jpg', 'plat 18.jpg', 'plat 19.jpg', 'plat 20.jpg',
   'plat 21.jpg'

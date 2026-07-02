@@ -7,9 +7,9 @@ import styles from './Hero.module.css';
 // Each slide needs an `overlay` color — it feeds the gradient that darkens
 // the photo so the title/eyebrow/CTAs stay readable on top of it.
 const bgImages = [
-  { src: '/images/gallery-30.jpg', overlay: 'rgba(12, 10, 6, 0.6)' },
-  { src: '/images/hero-1.webp', overlay: 'rgba(10, 9, 6, 0.55)' },
-  { src: '/images/gallery-27.jpg', overlay: 'rgba(8, 8, 8, 0.55)' },
+  { src: '/images/plat1.jpg', overlay: 'rgba(12, 10, 6, 0.6)' },
+  { src: '/images/plat4.jpg', overlay: 'rgba(10, 9, 6, 0.55)' },
+  { src: '/images/plat8.jpg', overlay: 'rgba(8, 8, 8, 0.55)' },
 ];
 
 export default function Hero({ onBookingClick }) {

@@ -34,7 +34,7 @@ export default function About() {
                 style={{ transform: `translateY(${offsetY}px) scale(1.12)` }}
               >
                 <img 
-                  src="/images/gallery-22.jpg" 
+                  src="/images/plat 21.jpg" 
                   alt={t('about.imageAlt')}
                   className={styles.actualImage}
                   loading="lazy"
